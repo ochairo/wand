@@ -1,0 +1,29 @@
+name: neovim
+description: Hyperextensible Vim-based text editor
+type: cli
+homepage: https://github.com/neovim/neovim
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- neovim
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/neovim-{version}/neovim-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/neovim-{version}/neovim-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/neovim-{version}/neovim-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/neovim-{version}/neovim-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/neovim-{version}/neovim-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/neovim-{version}/neovim-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/neovim-{version}/neovim-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/neovim-{version}/neovim-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

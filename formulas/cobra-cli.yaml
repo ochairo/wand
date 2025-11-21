@@ -1,0 +1,29 @@
+name: cobra-cli
+description: Generator for Cobra based CLI applications - scaffold modern Go CLI apps
+type: cli
+homepage: https://github.com/spf13/cobra-cli
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- cobra-cli
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/cobra-cli-{version}/cobra-cli-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/cobra-cli-{version}/cobra-cli-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/cobra-cli-{version}/cobra-cli-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/cobra-cli-{version}/cobra-cli-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/cobra-cli-{version}/cobra-cli-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/cobra-cli-{version}/cobra-cli-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/cobra-cli-{version}/cobra-cli-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/cobra-cli-{version}/cobra-cli-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

@@ -1,0 +1,29 @@
+name: openssl
+description: Cryptography and SSL/TLS toolkit
+type: cli
+homepage: https://github.com/openssl/openssl
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- openssl
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/openssl-{version}/openssl-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/openssl-{version}/openssl-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/openssl-{version}/openssl-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/openssl-{version}/openssl-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/openssl-{version}/openssl-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/openssl-{version}/openssl-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/openssl-{version}/openssl-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/openssl-{version}/openssl-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

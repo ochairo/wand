@@ -1,0 +1,20 @@
+name: buildah
+description: Tool that facilitates building OCI container images
+type: cli
+homepage: https://github.com/containers/buildah
+repository: ochairo/potions
+license: Unknown
+tags:
+- container
+binaries:
+- bin/buildah
+platforms:
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/buildah-{version}/buildah-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/buildah-{version}/buildah-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/buildah-{version}/buildah-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/buildah-{version}/buildah-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

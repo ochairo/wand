@@ -1,0 +1,29 @@
+name: yq
+description: YAML processor (like jq for YAML)
+type: cli
+homepage: https://github.com/mikefarah/yq
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- yq
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/yq-{version}/yq-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/yq-{version}/yq-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/yq-{version}/yq-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/yq-{version}/yq-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/yq-{version}/yq-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/yq-{version}/yq-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/yq-{version}/yq-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/yq-{version}/yq-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

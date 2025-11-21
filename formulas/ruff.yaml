@@ -1,0 +1,29 @@
+name: ruff
+description: An extremely fast Python linter and code formatter, written in Rust
+type: cli
+homepage: https://github.com/astral-sh/ruff
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- ruff
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/ruff-{version}/ruff-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/ruff-{version}/ruff-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/ruff-{version}/ruff-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/ruff-{version}/ruff-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/ruff-{version}/ruff-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/ruff-{version}/ruff-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/ruff-{version}/ruff-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/ruff-{version}/ruff-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

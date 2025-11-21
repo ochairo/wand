@@ -1,0 +1,29 @@
+name: llvm-git
+description: LLVM Compiler Infrastructure (git-based, for v20+)
+type: cli
+homepage: https://github.com/llvm/llvm-project
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- llvm-git
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/llvm-git-{version}/llvm-git-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/llvm-git-{version}/llvm-git-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/llvm-git-{version}/llvm-git-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/llvm-git-{version}/llvm-git-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/llvm-git-{version}/llvm-git-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/llvm-git-{version}/llvm-git-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/llvm-git-{version}/llvm-git-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/llvm-git-{version}/llvm-git-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

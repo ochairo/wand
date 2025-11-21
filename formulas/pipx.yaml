@@ -1,0 +1,29 @@
+name: pipx
+description: Install and run Python applications in isolated environments
+type: cli
+homepage: https://github.com/pypa/pipx
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- pipx
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/pipx-{version}/pipx-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/pipx-{version}/pipx-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/pipx-{version}/pipx-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/pipx-{version}/pipx-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/pipx-{version}/pipx-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/pipx-{version}/pipx-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/pipx-{version}/pipx-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/pipx-{version}/pipx-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

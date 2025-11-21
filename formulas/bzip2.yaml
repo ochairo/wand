@@ -1,0 +1,29 @@
+name: bzip2
+description: GNU bzip2
+type: cli
+homepage: https://sourceware.org/
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- bzip2
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/bzip2-{version}/bzip2-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/bzip2-{version}/bzip2-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/bzip2-{version}/bzip2-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/bzip2-{version}/bzip2-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/bzip2-{version}/bzip2-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/bzip2-{version}/bzip2-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/bzip2-{version}/bzip2-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/bzip2-{version}/bzip2-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

@@ -1,0 +1,29 @@
+name: ollama
+description: Run large language models locally
+type: cli
+homepage: https://github.com/ollama/ollama
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- '{}'
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/ollama-{version}/ollama-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/ollama-{version}/ollama-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/ollama-{version}/ollama-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/ollama-{version}/ollama-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/ollama-{version}/ollama-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/ollama-{version}/ollama-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/ollama-{version}/ollama-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/ollama-{version}/ollama-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

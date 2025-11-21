@@ -1,0 +1,30 @@
+name: kops
+description: Kubernetes Operations - Production Grade K8s Installation, Upgrades,
+  and Management
+type: cli
+homepage: https://github.com/kubernetes/kops
+repository: ochairo/potions
+license: Unknown
+tags:
+- kubernetes
+binaries:
+- kops-*
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/kops-{version}/kops-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/kops-{version}/kops-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/kops-{version}/kops-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/kops-{version}/kops-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/kops-{version}/kops-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/kops-{version}/kops-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/kops-{version}/kops-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/kops-{version}/kops-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

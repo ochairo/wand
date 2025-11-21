@@ -1,0 +1,25 @@
+name: gcc
+description: GNU Compiler Collection (GCC)
+type: cli
+homepage: https://mirrors.kernel.org/
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- gcc
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/gcc-{version}/gcc-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/gcc-{version}/gcc-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/gcc-{version}/gcc-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/gcc-{version}/gcc-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/gcc-{version}/gcc-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/gcc-{version}/gcc-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

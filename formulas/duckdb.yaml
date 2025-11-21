@@ -1,0 +1,29 @@
+name: duckdb
+description: Fast analytical database - query CSV, Excel, Parquet files with SQL
+type: cli
+homepage: https://github.com/duckdb/duckdb
+repository: ochairo/potions
+license: Unknown
+tags:
+- database
+binaries:
+- duckdb
+platforms:
+  darwin:
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/duckdb-{version}/duckdb-{version}-darwin-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/duckdb-{version}/duckdb-{version}-darwin-arm64.zip.sha256
+      requires_build: false
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/duckdb-{version}/duckdb-{version}-darwin-x86_64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/duckdb-{version}/duckdb-{version}-darwin-x86_64.zip.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/duckdb-{version}/duckdb-{version}-linux-amd64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/duckdb-{version}/duckdb-{version}-linux-amd64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/duckdb-{version}/duckdb-{version}-linux-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/duckdb-{version}/duckdb-{version}-linux-arm64.zip.sha256
+      requires_build: false

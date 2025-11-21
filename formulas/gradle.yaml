@@ -1,0 +1,30 @@
+name: gradle
+description: Powerful build automation tool for JVM languages (Java, Kotlin, Groovy,
+  Scala)
+type: cli
+homepage: https://github.com/gradle/gradle
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- gradle
+platforms:
+  darwin:
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/gradle-{version}/gradle-{version}-darwin-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/gradle-{version}/gradle-{version}-darwin-arm64.zip.sha256
+      requires_build: false
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/gradle-{version}/gradle-{version}-darwin-x86_64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/gradle-{version}/gradle-{version}-darwin-x86_64.zip.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/gradle-{version}/gradle-{version}-linux-amd64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/gradle-{version}/gradle-{version}-linux-amd64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/gradle-{version}/gradle-{version}-linux-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/gradle-{version}/gradle-{version}-linux-arm64.zip.sha256
+      requires_build: false

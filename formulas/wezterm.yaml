@@ -1,0 +1,28 @@
+name: wezterm
+description: GPU-accelerated cross-platform terminal emulator and multiplexer
+type: gui
+homepage: https://github.com/wez/wezterm
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+app_name: WezTerm.app
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/wezterm-{version}/wezterm-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/wezterm-{version}/wezterm-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/wezterm-{version}/wezterm-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/wezterm-{version}/wezterm-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/wezterm-{version}/wezterm-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/wezterm-{version}/wezterm-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/wezterm-{version}/wezterm-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/wezterm-{version}/wezterm-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

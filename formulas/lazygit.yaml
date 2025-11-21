@@ -1,0 +1,29 @@
+name: lazygit
+description: Git TUI
+type: cli
+homepage: https://github.com/jesseduffield/lazygit
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- lazygit
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/lazygit-{version}/lazygit-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/lazygit-{version}/lazygit-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/lazygit-{version}/lazygit-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/lazygit-{version}/lazygit-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/lazygit-{version}/lazygit-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/lazygit-{version}/lazygit-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/lazygit-{version}/lazygit-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/lazygit-{version}/lazygit-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

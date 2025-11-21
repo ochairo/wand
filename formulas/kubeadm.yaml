@@ -1,0 +1,21 @@
+name: kubeadm
+description: Tool built to provide kubeadm init and kubeadm join as best-practice
+  fast paths
+type: cli
+homepage: https://github.com/kubernetes/kubernetes
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- kubeadm
+platforms:
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/kubeadm-{version}/kubeadm-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/kubeadm-{version}/kubeadm-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/kubeadm-{version}/kubeadm-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/kubeadm-{version}/kubeadm-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

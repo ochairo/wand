@@ -1,0 +1,30 @@
+name: opentofu
+description: Fork of Terraform that is open-source, community-driven, and managed
+  by the Linux Foundation
+type: cli
+homepage: https://github.com/opentofu/opentofu
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- tofu
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/opentofu-{version}/opentofu-{version}-darwin-x86_64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/opentofu-{version}/opentofu-{version}-darwin-x86_64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/opentofu-{version}/opentofu-{version}-darwin-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/opentofu-{version}/opentofu-{version}-darwin-arm64.zip.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/opentofu-{version}/opentofu-{version}-linux-amd64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/opentofu-{version}/opentofu-{version}-linux-amd64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/opentofu-{version}/opentofu-{version}-linux-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/opentofu-{version}/opentofu-{version}-linux-arm64.zip.sha256
+      requires_build: false

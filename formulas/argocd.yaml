@@ -1,0 +1,29 @@
+name: argocd
+description: GitOps continuous delivery for Kubernetes
+type: cli
+homepage: https://github.com/argoproj/argo-cd
+repository: ochairo/potions
+license: Unknown
+tags:
+- kubernetes
+binaries:
+- argocd-*
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/argocd-{version}/argocd-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/argocd-{version}/argocd-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/argocd-{version}/argocd-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/argocd-{version}/argocd-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/argocd-{version}/argocd-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/argocd-{version}/argocd-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/argocd-{version}/argocd-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/argocd-{version}/argocd-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

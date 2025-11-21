@@ -1,0 +1,29 @@
+name: istioctl
+description: Istio service mesh CLI
+type: cli
+homepage: https://github.com/istio/istio
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- istioctl
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/istioctl-{version}/istioctl-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/istioctl-{version}/istioctl-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/istioctl-{version}/istioctl-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/istioctl-{version}/istioctl-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/istioctl-{version}/istioctl-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/istioctl-{version}/istioctl-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/istioctl-{version}/istioctl-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/istioctl-{version}/istioctl-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

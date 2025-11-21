@@ -1,0 +1,29 @@
+name: mongosh
+description: Modern MongoDB Shell - Interactive JavaScript shell for MongoDB
+type: cli
+homepage: https://github.com/mongodb-js/mongosh
+repository: ochairo/potions
+license: Unknown
+tags:
+- database
+binaries:
+- mongosh-*/bin/mongosh*
+platforms:
+  darwin:
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/mongosh-{version}/mongosh-{version}-darwin-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/mongosh-{version}/mongosh-{version}-darwin-arm64.zip.sha256
+      requires_build: false
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/mongosh-{version}/mongosh-{version}-darwin-x86_64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/mongosh-{version}/mongosh-{version}-darwin-x86_64.zip.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/mongosh-{version}/mongosh-{version}-linux-amd64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/mongosh-{version}/mongosh-{version}-linux-amd64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/mongosh-{version}/mongosh-{version}-linux-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/mongosh-{version}/mongosh-{version}-linux-arm64.zip.sha256
+      requires_build: false

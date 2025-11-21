@@ -1,0 +1,29 @@
+name: loki
+description: Like Prometheus, but for logs
+type: cli
+homepage: https://github.com/grafana/loki
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- loki
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/loki-{version}/loki-{version}-darwin-x86_64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/loki-{version}/loki-{version}-darwin-x86_64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/loki-{version}/loki-{version}-darwin-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/loki-{version}/loki-{version}-darwin-arm64.zip.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/loki-{version}/loki-{version}-linux-amd64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/loki-{version}/loki-{version}-linux-amd64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/loki-{version}/loki-{version}-linux-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/loki-{version}/loki-{version}-linux-arm64.zip.sha256
+      requires_build: false

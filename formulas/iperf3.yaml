@@ -1,0 +1,29 @@
+name: iperf3
+description: Network bandwidth measurement tool
+type: cli
+homepage: https://github.com/esnet/iperf
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- iperf3
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/iperf3-{version}/iperf3-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/iperf3-{version}/iperf3-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/iperf3-{version}/iperf3-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/iperf3-{version}/iperf3-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/iperf3-{version}/iperf3-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/iperf3-{version}/iperf3-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/iperf3-{version}/iperf3-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/iperf3-{version}/iperf3-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

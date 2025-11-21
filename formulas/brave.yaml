@@ -1,0 +1,28 @@
+name: brave
+description: Privacy-focused web browser
+type: gui
+homepage: https://github.com/brave/brave-browser
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+app_name: Brave Browser.app
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/brave-{version}/brave-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/brave-{version}/brave-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/brave-{version}/brave-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/brave-{version}/brave-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/brave-{version}/brave-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/brave-{version}/brave-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/brave-{version}/brave-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/brave-{version}/brave-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

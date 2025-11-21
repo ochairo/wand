@@ -1,0 +1,228 @@
+name: Tests
+
+# Runs on: push to main, pull requests to main
+# Jobs: test (2 OS) → lint → build
+# Includes: unit tests + integration tests
+# Total CI time: ~2-4 minutes
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        go: ["1.24"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go }}
+          cache: true
+
+      - name: Verify dependencies
+        run: go mod verify
+
+      - name: Download dependencies
+        run: go mod download
+
+      - name: Run tests
+        run: go test -v -race -coverprofile=coverage.out ./...
+
+      - name: Upload coverage to Codecov
+        if: matrix.os == 'ubuntu-latest'
+        uses: codecov/codecov-action@v4
+        continue-on-error: true
+        with:
+          file: ./coverage.out
+          flags: unittests
+          name: codecov-ubuntu-go${{ matrix.go }}
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+          cache: true
+
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v7
+        with:
+          version: v2.6.2
+          args: --timeout=5m
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+          cache: true
+
+      - name: Verify go.mod is tidy
+        run: |
+          go mod tidy
+          git diff --exit-code go.mod go.sum
+
+      - name: Build for all platforms
+        run: make dist
+
+      - name: Verify binaries
+        run: |
+          ls -lh dist/
+          file dist/wand-*
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: binaries
+          path: dist/
+          retention-days: 7
+
+  validate-formulas:
+    name: Validate Formulas
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install PyYAML
+        run: pip install PyYAML
+
+      - name: Check formula naming
+        run: |
+          cd formulas
+          for file in *.yaml; do
+            if [ -f "$file" ]; then
+              name=$(echo "$file" | sed 's/\.yaml$//')
+              if ! echo "$name" | grep -qE '^[a-z][a-z0-9-]*[a-z0-9]$'; then
+                echo "❌ Invalid formula name: $file"
+                echo "   Formula names must be lowercase, alphanumeric with hyphens"
+                exit 1
+              fi
+              echo "✓ Valid name: $file"
+            fi
+          done
+
+      - name: Validate YAML syntax
+        run: |
+          for file in formulas/*.yaml; do
+            if [ -f "$file" ]; then
+              if ! python3 -c "import yaml; yaml.safe_load(open('$file'))" 2>/dev/null; then
+                echo "❌ Invalid YAML syntax: $file"
+                exit 1
+              fi
+              echo "✓ Valid YAML: $(basename $file)"
+            fi
+          done
+
+      - name: Check required fields
+        run: |
+          python3 <<'PYTHON'
+          import yaml
+          import sys
+          from pathlib import Path
+
+          required_fields = ['name', 'description', 'type', 'homepage', 'repository', 'license', 'tags', 'platforms']
+          errors = []
+
+          for formula_file in Path('formulas').glob('*.yaml'):
+              with open(formula_file) as f:
+                  formula = yaml.safe_load(f)
+
+              for field in required_fields:
+                  if field not in formula or not formula[field]:
+                      errors.append(f"{formula_file.name}: missing required field '{field}'")
+
+              # Check platforms structure
+              if 'platforms' in formula:
+                  if len(formula['platforms']) == 0:
+                      errors.append(f"{formula_file.name}: must have at least one platform")
+                  else:
+                      # Verify platform structure
+                      for os_name, os_config in formula['platforms'].items():
+                          if not isinstance(os_config, dict):
+                              errors.append(f"{formula_file.name}: invalid platform structure for {os_name}")
+                              continue
+                          for arch, arch_config in os_config.items():
+                              if 'download_url' not in arch_config:
+                                  errors.append(f"{formula_file.name}: missing download_url for {os_name}/{arch}")
+
+          if errors:
+              print("❌ Validation errors:")
+              for error in errors:
+                  print(f"   {error}")
+              sys.exit(1)
+
+          print("✅ All formulas have required fields")
+          PYTHON
+
+      - name: Validate HTTPS URLs
+        run: |
+          python3 <<'PYTHON'
+          import yaml
+          import sys
+          from pathlib import Path
+
+          errors = []
+
+          for formula_file in Path('formulas').glob('*.yaml'):
+              with open(formula_file) as f:
+                  formula = yaml.safe_load(f)
+
+              # Check homepage
+              if 'homepage' in formula:
+                  if not formula['homepage'].startswith('https://'):
+                      errors.append(f"{formula_file.name}: homepage must use HTTPS")
+
+              # Check platform download URLs
+              if 'platforms' in formula:
+                  for os_name, os_config in formula['platforms'].items():
+                      if isinstance(os_config, dict):
+                          for arch, arch_config in os_config.items():
+                              if isinstance(arch_config, dict):
+                                  if 'download_url' in arch_config:
+                                      url = arch_config['download_url']
+                                      # Check base URL (before {version} placeholder)
+                                      if not url.split('{')[0].startswith('https://'):
+                                          errors.append(f"{formula_file.name}: download_url for {os_name}/{arch} must use HTTPS")
+
+          if errors:
+              print("❌ URL validation errors:")
+              for error in errors:
+                  print(f"   {error}")
+              sys.exit(1)
+
+          print("✅ All URLs use HTTPS")
+          PYTHON

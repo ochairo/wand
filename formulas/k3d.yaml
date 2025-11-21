@@ -1,0 +1,31 @@
+name: k3d
+description: Little helper to run k3s (Rancher Lab's minimal Kubernetes distribution)
+  in docker
+type: cli
+homepage: https://github.com/k3d-io/k3d
+repository: ochairo/potions
+license: Unknown
+tags:
+- kubernetes
+- container
+binaries:
+- k3d-*
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/k3d-{version}/k3d-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/k3d-{version}/k3d-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/k3d-{version}/k3d-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/k3d-{version}/k3d-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/k3d-{version}/k3d-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/k3d-{version}/k3d-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/k3d-{version}/k3d-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/k3d-{version}/k3d-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

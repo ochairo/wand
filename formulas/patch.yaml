@@ -1,0 +1,29 @@
+name: patch
+description: GNU patch
+type: cli
+homepage: https://mirrors.kernel.org/
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- patch
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/patch-{version}/patch-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/patch-{version}/patch-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/patch-{version}/patch-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/patch-{version}/patch-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/patch-{version}/patch-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/patch-{version}/patch-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/patch-{version}/patch-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/patch-{version}/patch-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

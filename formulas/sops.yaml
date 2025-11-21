@@ -1,0 +1,29 @@
+name: sops
+description: Simple and flexible tool for managing secrets
+type: cli
+homepage: https://github.com/getsops/sops
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- sops-*
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/sops-{version}/sops-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/sops-{version}/sops-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/sops-{version}/sops-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/sops-{version}/sops-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/sops-{version}/sops-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/sops-{version}/sops-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/sops-{version}/sops-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/sops-{version}/sops-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

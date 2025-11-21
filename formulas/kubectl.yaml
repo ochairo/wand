@@ -1,0 +1,29 @@
+name: kubectl
+description: Kubernetes command-line tool
+type: cli
+homepage: https://kubernetes.io/
+repository: ochairo/potions
+license: Unknown
+tags:
+- kubernetes
+binaries:
+- kubectl
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/kubectl-{version}/kubectl-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/kubectl-{version}/kubectl-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/kubectl-{version}/kubectl-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/kubectl-{version}/kubectl-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/kubectl-{version}/kubectl-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/kubectl-{version}/kubectl-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/kubectl-{version}/kubectl-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/kubectl-{version}/kubectl-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

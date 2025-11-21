@@ -1,0 +1,29 @@
+name: zstd
+description: Zstandard - Fast real-time compression algorithm
+type: cli
+homepage: https://github.com/facebook/zstd
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- zstd
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/zstd-{version}/zstd-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/zstd-{version}/zstd-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/zstd-{version}/zstd-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/zstd-{version}/zstd-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/zstd-{version}/zstd-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/zstd-{version}/zstd-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/zstd-{version}/zstd-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/zstd-{version}/zstd-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

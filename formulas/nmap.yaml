@@ -1,0 +1,29 @@
+name: nmap
+description: Network exploration tool and security / port scanner
+type: cli
+homepage: https://nmap.org/
+repository: ochairo/potions
+license: Unknown
+tags:
+- security
+binaries:
+- nmap
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/nmap-{version}/nmap-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/nmap-{version}/nmap-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/nmap-{version}/nmap-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/nmap-{version}/nmap-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/nmap-{version}/nmap-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/nmap-{version}/nmap-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/nmap-{version}/nmap-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/nmap-{version}/nmap-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false
