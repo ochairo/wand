@@ -1,0 +1,29 @@
+name: caddy
+description: Fast, multi-platform web server with automatic HTTPS
+type: cli
+homepage: https://github.com/caddyserver/caddy
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- caddy
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/caddy-{version}/caddy-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/caddy-{version}/caddy-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/caddy-{version}/caddy-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/caddy-{version}/caddy-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/caddy-{version}/caddy-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/caddy-{version}/caddy-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/caddy-{version}/caddy-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/caddy-{version}/caddy-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

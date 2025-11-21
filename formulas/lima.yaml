@@ -1,0 +1,29 @@
+name: lima
+description: Linux virtual machines on macOS
+type: cli
+homepage: https://github.com/lima-vm/lima
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- bin/*
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/lima-{version}/lima-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/lima-{version}/lima-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/lima-{version}/lima-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/lima-{version}/lima-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/lima-{version}/lima-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/lima-{version}/lima-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/lima-{version}/lima-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/lima-{version}/lima-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

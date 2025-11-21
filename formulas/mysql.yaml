@@ -1,0 +1,29 @@
+name: mysql
+description: Relational database management system
+type: cli
+homepage: https://github.com/mysql/mysql-server
+repository: ochairo/potions
+license: Unknown
+tags:
+- database
+binaries:
+- mysql
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/mysql-{version}/mysql-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/mysql-{version}/mysql-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/mysql-{version}/mysql-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/mysql-{version}/mysql-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/mysql-{version}/mysql-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/mysql-{version}/mysql-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/mysql-{version}/mysql-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/mysql-{version}/mysql-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

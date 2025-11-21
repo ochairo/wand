@@ -1,0 +1,29 @@
+name: python
+description: Python programming language
+type: cli
+homepage: https://www.python.org/
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- python
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/python-{version}/python-{version}-darwin-x86_64.tar.xz
+      checksum_url: https://github.com/ochairo/potions/releases/download/python-{version}/python-{version}-darwin-x86_64.tar.xz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/python-{version}/python-{version}-darwin-arm64.tar.xz
+      checksum_url: https://github.com/ochairo/potions/releases/download/python-{version}/python-{version}-darwin-arm64.tar.xz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/python-{version}/python-{version}-linux-amd64.tar.xz
+      checksum_url: https://github.com/ochairo/potions/releases/download/python-{version}/python-{version}-linux-amd64.tar.xz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/python-{version}/python-{version}-linux-arm64.tar.xz
+      checksum_url: https://github.com/ochairo/potions/releases/download/python-{version}/python-{version}-linux-arm64.tar.xz.sha256
+      requires_build: false

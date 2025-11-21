@@ -1,0 +1,29 @@
+name: consul
+description: Service discovery and configuration
+type: cli
+homepage: https://github.com/hashicorp/consul
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- consul
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/consul-{version}/consul-{version}-darwin-x86_64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/consul-{version}/consul-{version}-darwin-x86_64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/consul-{version}/consul-{version}-darwin-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/consul-{version}/consul-{version}-darwin-arm64.zip.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/consul-{version}/consul-{version}-linux-amd64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/consul-{version}/consul-{version}-linux-amd64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/consul-{version}/consul-{version}-linux-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/consul-{version}/consul-{version}-linux-arm64.zip.sha256
+      requires_build: false

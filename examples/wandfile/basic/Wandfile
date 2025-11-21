@@ -1,0 +1,29 @@
+# Basic CLI Tools Wandfile
+# Essential command-line utilities
+
+version: "1.0"
+
+packages:
+  # JSON processing
+  - name: jq
+    version: latest
+
+  # Fast text search
+  - name: ripgrep
+    version: latest
+
+  # Fast file finder
+  - name: fd
+    version: latest
+
+  # Better cat with syntax highlighting
+  - name: bat
+    version: latest
+
+  # Modern ls replacement
+  - name: eza
+    version: latest
+
+  # Disk usage analyzer
+  - name: dust
+    version: latest

@@ -1,0 +1,29 @@
+name: vault-plugin
+description: Vault plugin for Kubernetes auth and secrets
+type: cli
+homepage: https://releases.hashicorp.com
+repository: ochairo/potions
+license: Unknown
+tags:
+- kubernetes
+binaries:
+- vault-plugin-auth-kubernetes
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/vault-plugin-{version}/vault-plugin-{version}-darwin-x86_64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/vault-plugin-{version}/vault-plugin-{version}-darwin-x86_64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/vault-plugin-{version}/vault-plugin-{version}-darwin-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/vault-plugin-{version}/vault-plugin-{version}-darwin-arm64.zip.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/vault-plugin-{version}/vault-plugin-{version}-linux-amd64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/vault-plugin-{version}/vault-plugin-{version}-linux-amd64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/vault-plugin-{version}/vault-plugin-{version}-linux-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/vault-plugin-{version}/vault-plugin-{version}-linux-arm64.zip.sha256
+      requires_build: false

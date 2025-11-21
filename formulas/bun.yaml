@@ -1,0 +1,30 @@
+name: bun
+description: Incredibly fast JavaScript runtime, bundler, test runner, and package
+  manager - all-in-one
+type: cli
+homepage: https://github.com/oven-sh/bun
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- bun-*/bun
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/bun-{version}/bun-{version}-darwin-x86_64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/bun-{version}/bun-{version}-darwin-x86_64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/bun-{version}/bun-{version}-darwin-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/bun-{version}/bun-{version}-darwin-arm64.zip.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/bun-{version}/bun-{version}-linux-amd64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/bun-{version}/bun-{version}-linux-amd64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/bun-{version}/bun-{version}-linux-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/bun-{version}/bun-{version}-linux-arm64.zip.sha256
+      requires_build: false

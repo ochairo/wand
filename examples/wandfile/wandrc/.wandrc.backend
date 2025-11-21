@@ -1,0 +1,16 @@
+# Backend API Project .wandrc
+# Node 20 LTS with specific tooling
+
+packages:
+  - name: node
+    version: "20.10.0"
+
+  - name: npm
+    version: "10.2.0"
+
+  # API-specific tools
+  - name: postgresql
+    version: "15.5"
+
+  - name: redis
+    version: "7.2.0"

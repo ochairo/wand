@@ -1,0 +1,84 @@
+# Complete Environment Wandfile
+# Packages + Dotfiles in one configuration
+
+version: "1.0"
+
+# ============================================================================
+# Packages
+# ============================================================================
+
+packages:
+  # CLI Utilities
+  - name: jq
+    version: latest
+
+  - name: ripgrep
+    version: latest
+
+  - name: fd
+    version: latest
+
+  - name: bat
+    version: latest
+
+  - name: eza
+    version: latest
+
+  # Development Tools
+  - name: git
+    version: latest
+
+  - name: neovim
+    version: latest
+
+  - name: gh
+    version: latest
+
+  # Shell Enhancement
+  - name: zsh
+    version: latest
+
+  - name: starship
+    version: latest
+
+  # Language Runtimes
+  - name: node
+    version: "20.10.0"
+
+  - name: python
+    version: "3.11.0"
+
+# ============================================================================
+# Dotfiles
+# ============================================================================
+
+dotfiles:
+  # Personal dotfiles repository
+  - name: my-dotfiles
+    repository: https://github.com/yourusername/dotfiles.git
+    branch: main
+    configs:
+      - zsh # Shell configuration
+      - git # Git aliases and settings
+      - nvim # Neovim configuration
+      - starship # Prompt configuration
+      - wezterm # Terminal emulator config
+
+  # Or use ochairo's dotfiles as reference
+  # - name: dev-dotfiles
+  #   repository: https://github.com/ochairo/dotfiles.git
+  #   branch: main
+  #   configs:
+  #     - nvim
+  #     - starship
+  #     - zsh
+  #     - git
+
+# ============================================================================
+# Metadata
+# ============================================================================
+
+metadata:
+  description: "Complete development environment setup"
+  author: "Your Name"
+  updated: "2025-11-23"

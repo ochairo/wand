@@ -1,0 +1,29 @@
+name: hadolint
+description: Dockerfile linter
+type: cli
+homepage: https://github.com/hadolint/hadolint
+repository: ochairo/potions
+license: Unknown
+tags:
+- container
+binaries:
+- hadolint-*
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/hadolint-{version}/hadolint-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/hadolint-{version}/hadolint-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/hadolint-{version}/hadolint-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/hadolint-{version}/hadolint-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/hadolint-{version}/hadolint-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/hadolint-{version}/hadolint-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/hadolint-{version}/hadolint-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/hadolint-{version}/hadolint-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

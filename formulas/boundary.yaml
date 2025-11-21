@@ -1,0 +1,29 @@
+name: boundary
+description: HashiCorp Boundary - Secure remote access to any system
+type: cli
+homepage: https://github.com/hashicorp/boundary
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- boundary
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/boundary-{version}/boundary-{version}-darwin-x86_64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/boundary-{version}/boundary-{version}-darwin-x86_64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/boundary-{version}/boundary-{version}-darwin-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/boundary-{version}/boundary-{version}-darwin-arm64.zip.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/boundary-{version}/boundary-{version}-linux-amd64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/boundary-{version}/boundary-{version}-linux-amd64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/boundary-{version}/boundary-{version}-linux-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/boundary-{version}/boundary-{version}-linux-arm64.zip.sha256
+      requires_build: false

@@ -1,0 +1,29 @@
+name: fish
+description: User-friendly command-line shell
+type: cli
+homepage: https://github.com/fish-shell/fish-shell
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- fish
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/fish-{version}/fish-{version}-darwin-x86_64.tar.xz
+      checksum_url: https://github.com/ochairo/potions/releases/download/fish-{version}/fish-{version}-darwin-x86_64.tar.xz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/fish-{version}/fish-{version}-darwin-arm64.tar.xz
+      checksum_url: https://github.com/ochairo/potions/releases/download/fish-{version}/fish-{version}-darwin-arm64.tar.xz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/fish-{version}/fish-{version}-linux-amd64.tar.xz
+      checksum_url: https://github.com/ochairo/potions/releases/download/fish-{version}/fish-{version}-linux-amd64.tar.xz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/fish-{version}/fish-{version}-linux-arm64.tar.xz
+      checksum_url: https://github.com/ochairo/potions/releases/download/fish-{version}/fish-{version}-linux-arm64.tar.xz.sha256
+      requires_build: false

@@ -1,0 +1,29 @@
+name: checkstyle
+description: Java code style checker - enforce coding standards and best practices
+type: cli
+homepage: https://github.com/checkstyle/checkstyle
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- checkstyle
+platforms:
+  darwin:
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/checkstyle-{version}/checkstyle-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/checkstyle-{version}/checkstyle-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/checkstyle-{version}/checkstyle-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/checkstyle-{version}/checkstyle-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/checkstyle-{version}/checkstyle-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/checkstyle-{version}/checkstyle-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/checkstyle-{version}/checkstyle-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/checkstyle-{version}/checkstyle-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

@@ -1,0 +1,30 @@
+name: usql
+description: Universal command-line SQL client - like psql but for all databases (PostgreSQL,
+  MySQL, SQLite, etc.)
+type: cli
+homepage: https://github.com/xo/usql
+repository: ochairo/potions
+license: Unknown
+tags:
+- database
+binaries:
+- usql
+platforms:
+  darwin:
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/usql-{version}/usql-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/usql-{version}/usql-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/usql-{version}/usql-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/usql-{version}/usql-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/usql-{version}/usql-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/usql-{version}/usql-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/usql-{version}/usql-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/usql-{version}/usql-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

@@ -1,0 +1,29 @@
+name: terraform
+description: Infrastructure as Code tool
+type: cli
+homepage: https://www.terraform.io/
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- terraform
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/terraform-{version}/terraform-{version}-darwin-x86_64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/terraform-{version}/terraform-{version}-darwin-x86_64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/terraform-{version}/terraform-{version}-darwin-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/terraform-{version}/terraform-{version}-darwin-arm64.zip.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/terraform-{version}/terraform-{version}-linux-amd64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/terraform-{version}/terraform-{version}-linux-amd64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/terraform-{version}/terraform-{version}-linux-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/terraform-{version}/terraform-{version}-linux-arm64.zip.sha256
+      requires_build: false

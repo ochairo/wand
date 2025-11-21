@@ -1,0 +1,30 @@
+name: kind
+description: Kubernetes in Docker - local Kubernetes clusters
+type: cli
+homepage: https://github.com/kubernetes-sigs/kind
+repository: ochairo/potions
+license: Unknown
+tags:
+- kubernetes
+- container
+binaries:
+- kind-*
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/kind-{version}/kind-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/kind-{version}/kind-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/kind-{version}/kind-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/kind-{version}/kind-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/kind-{version}/kind-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/kind-{version}/kind-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/kind-{version}/kind-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/kind-{version}/kind-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

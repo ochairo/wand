@@ -1,0 +1,20 @@
+name: tempo
+description: High-volume, minimal dependency distributed tracing backend
+type: cli
+homepage: https://github.com/grafana/tempo
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- '{}'
+platforms:
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/tempo-{version}/tempo-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/tempo-{version}/tempo-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/tempo-{version}/tempo-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/tempo-{version}/tempo-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

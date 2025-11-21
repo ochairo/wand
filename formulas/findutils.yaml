@@ -1,0 +1,29 @@
+name: findutils
+description: GNU find, xargs, and locate utilities
+type: cli
+homepage: https://mirrors.kernel.org/
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- findutils
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/findutils-{version}/findutils-{version}-darwin-x86_64.tar.xz
+      checksum_url: https://github.com/ochairo/potions/releases/download/findutils-{version}/findutils-{version}-darwin-x86_64.tar.xz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/findutils-{version}/findutils-{version}-darwin-arm64.tar.xz
+      checksum_url: https://github.com/ochairo/potions/releases/download/findutils-{version}/findutils-{version}-darwin-arm64.tar.xz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/findutils-{version}/findutils-{version}-linux-amd64.tar.xz
+      checksum_url: https://github.com/ochairo/potions/releases/download/findutils-{version}/findutils-{version}-linux-amd64.tar.xz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/findutils-{version}/findutils-{version}-linux-arm64.tar.xz
+      checksum_url: https://github.com/ochairo/potions/releases/download/findutils-{version}/findutils-{version}-linux-arm64.tar.xz.sha256
+      requires_build: false

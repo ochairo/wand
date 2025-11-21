@@ -1,0 +1,29 @@
+name: screen
+description: Terminal multiplexer (alternative to tmux)
+type: cli
+homepage: https://mirrors.kernel.org/
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- screen
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/screen-{version}/screen-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/screen-{version}/screen-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/screen-{version}/screen-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/screen-{version}/screen-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/screen-{version}/screen-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/screen-{version}/screen-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/screen-{version}/screen-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/screen-{version}/screen-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

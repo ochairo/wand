@@ -1,0 +1,29 @@
+name: libyaml
+description: YAML parser and emitter library
+type: cli
+homepage: https://github.com/yaml/libyaml
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- libyaml
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/libyaml-{version}/libyaml-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/libyaml-{version}/libyaml-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/libyaml-{version}/libyaml-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/libyaml-{version}/libyaml-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/libyaml-{version}/libyaml-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/libyaml-{version}/libyaml-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/libyaml-{version}/libyaml-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/libyaml-{version}/libyaml-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

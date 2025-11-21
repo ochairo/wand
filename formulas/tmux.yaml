@@ -1,0 +1,29 @@
+name: tmux
+description: Terminal multiplexer
+type: cli
+homepage: https://github.com/tmux/tmux
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- tmux
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/tmux-{version}/tmux-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/tmux-{version}/tmux-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/tmux-{version}/tmux-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/tmux-{version}/tmux-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/tmux-{version}/tmux-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/tmux-{version}/tmux-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/tmux-{version}/tmux-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/tmux-{version}/tmux-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

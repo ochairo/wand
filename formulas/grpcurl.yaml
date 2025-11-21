@@ -1,0 +1,30 @@
+name: grpcurl
+description: Like curl, but for gRPC - command-line tool for interacting with gRPC
+  servers
+type: cli
+homepage: https://github.com/fullstorydev/grpcurl
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- grpcurl
+platforms:
+  darwin:
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/grpcurl-{version}/grpcurl-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/grpcurl-{version}/grpcurl-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/grpcurl-{version}/grpcurl-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/grpcurl-{version}/grpcurl-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/grpcurl-{version}/grpcurl-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/grpcurl-{version}/grpcurl-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/grpcurl-{version}/grpcurl-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/grpcurl-{version}/grpcurl-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

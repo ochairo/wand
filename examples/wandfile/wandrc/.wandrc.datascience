@@ -1,0 +1,19 @@
+# Python Data Science Project .wandrc
+# Python 3.10 for ML libraries compatibility
+
+packages:
+  - name: python
+    version: "3.10.13"
+
+  - name: pip
+    version: latest
+
+  # Data science tools
+  - name: jupyter
+    version: latest
+
+  - name: pandas
+    version: "2.1.0"
+
+  - name: numpy
+    version: "1.26.0"

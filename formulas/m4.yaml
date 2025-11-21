@@ -1,0 +1,29 @@
+name: m4
+description: GNU m4
+type: cli
+homepage: https://mirrors.kernel.org/
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- m4
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/m4-{version}/m4-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/m4-{version}/m4-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/m4-{version}/m4-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/m4-{version}/m4-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/m4-{version}/m4-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/m4-{version}/m4-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/m4-{version}/m4-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/m4-{version}/m4-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

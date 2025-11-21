@@ -1,0 +1,29 @@
+name: zsh
+description: UNIX shell (command interpreter)
+type: cli
+homepage: https://sourceforge.net/
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- zsh
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/zsh-{version}/zsh-{version}-darwin-x86_64.tar.xz
+      checksum_url: https://github.com/ochairo/potions/releases/download/zsh-{version}/zsh-{version}-darwin-x86_64.tar.xz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/zsh-{version}/zsh-{version}-darwin-arm64.tar.xz
+      checksum_url: https://github.com/ochairo/potions/releases/download/zsh-{version}/zsh-{version}-darwin-arm64.tar.xz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/zsh-{version}/zsh-{version}-linux-amd64.tar.xz
+      checksum_url: https://github.com/ochairo/potions/releases/download/zsh-{version}/zsh-{version}-linux-amd64.tar.xz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/zsh-{version}/zsh-{version}-linux-arm64.tar.xz
+      checksum_url: https://github.com/ochairo/potions/releases/download/zsh-{version}/zsh-{version}-linux-arm64.tar.xz.sha256
+      requires_build: false

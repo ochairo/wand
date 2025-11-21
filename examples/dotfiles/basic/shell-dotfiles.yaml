@@ -1,0 +1,35 @@
+name: shell-dotfiles
+type: dotfile
+description: Basic shell configuration (zsh, aliases, functions)
+homepage: https://github.com/yourusername/dotfiles
+
+repository:
+  url: https://github.com/yourusername/dotfiles.git
+  branch: main
+
+install:
+  target: ~/.dotfiles/shell
+
+  symlinks:
+    - source: configs/.zshrc
+      target: ~/.zshrc
+
+    - source: configs/.zshenv
+      target: ~/.zshenv
+
+    - source: configs/.zsh_aliases
+      target: ~/.zsh_aliases
+
+    - source: configs/.zsh_functions
+      target: ~/.zsh_functions
+
+  post_install:
+    - echo "Shell dotfiles installed. Restart your terminal or run: source ~/.zshrc"
+
+metadata:
+  author: Your Name
+  license: MIT
+  tags:
+    - shell
+    - zsh
+    - configuration

@@ -1,0 +1,23 @@
+#!/usr/bin/env zsh
+# Shell aliases
+
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+
+# List files
+alias ll='ls -laF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Safety
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Git shortcuts
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gl='git log --oneline'

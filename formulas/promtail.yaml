@@ -1,0 +1,29 @@
+name: promtail
+description: Agent for Loki that ships logs
+type: cli
+homepage: https://github.com/grafana/loki
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- promtail
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/promtail-{version}/promtail-{version}-darwin-x86_64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/promtail-{version}/promtail-{version}-darwin-x86_64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/promtail-{version}/promtail-{version}-darwin-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/promtail-{version}/promtail-{version}-darwin-arm64.zip.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/promtail-{version}/promtail-{version}-linux-amd64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/promtail-{version}/promtail-{version}-linux-amd64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/promtail-{version}/promtail-{version}-linux-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/promtail-{version}/promtail-{version}-linux-arm64.zip.sha256
+      requires_build: false

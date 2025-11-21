@@ -1,0 +1,20 @@
+name: envoy
+description: Cloud-native high-performance edge/service proxy
+type: cli
+homepage: https://github.com/envoyproxy/envoy
+repository: ochairo/potions
+license: Unknown
+tags:
+- cloud
+binaries:
+- envoy-*
+platforms:
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/envoy-{version}/envoy-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/envoy-{version}/envoy-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/envoy-{version}/envoy-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/envoy-{version}/envoy-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

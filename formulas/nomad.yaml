@@ -1,0 +1,29 @@
+name: nomad
+description: HashiCorp Nomad - Workload orchestrator
+type: cli
+homepage: https://github.com/hashicorp/nomad
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- nomad
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/nomad-{version}/nomad-{version}-darwin-x86_64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/nomad-{version}/nomad-{version}-darwin-x86_64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/nomad-{version}/nomad-{version}-darwin-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/nomad-{version}/nomad-{version}-darwin-arm64.zip.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/nomad-{version}/nomad-{version}-linux-amd64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/nomad-{version}/nomad-{version}-linux-amd64.zip.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/nomad-{version}/nomad-{version}-linux-arm64.zip
+      checksum_url: https://github.com/ochairo/potions/releases/download/nomad-{version}/nomad-{version}-linux-arm64.zip.sha256
+      requires_build: false

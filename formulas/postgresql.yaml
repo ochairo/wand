@@ -1,0 +1,29 @@
+name: postgresql
+description: Advanced open source relational database
+type: cli
+homepage: https://github.com/postgres/postgres
+repository: ochairo/potions
+license: Unknown
+tags:
+- database
+binaries:
+- postgresql
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/postgresql-{version}/postgresql-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/postgresql-{version}/postgresql-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/postgresql-{version}/postgresql-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/postgresql-{version}/postgresql-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/postgresql-{version}/postgresql-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/postgresql-{version}/postgresql-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/postgresql-{version}/postgresql-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/postgresql-{version}/postgresql-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

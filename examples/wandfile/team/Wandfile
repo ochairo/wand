@@ -1,0 +1,166 @@
+# Team Development Standards Wandfile
+# Standardized tooling for all team members
+# Last updated: 2025-11-23
+
+version: "1.0"
+
+metadata:
+  team: Engineering
+  updated_by: tech-lead
+  purpose: Ensure consistent development environment across team
+
+packages:
+  # ============================================================================
+  # Language Runtimes (PINNED for consistency)
+  # ============================================================================
+
+  - name: node
+    version: "20.10.0"
+    required: true
+    reason: "LTS version, matches production"
+
+  - name: python
+    version: "3.11.6"
+    required: true
+    reason: "Team standard, compatible with all projects"
+
+  - name: go
+    version: "1.21.5"
+    required: true
+    reason: "Backend services version"
+
+  # ============================================================================
+  # Package Managers
+  # ============================================================================
+
+  - name: npm
+    version: "10.2.0"
+    required: true
+
+  - name: yarn
+    version: "4.0.0"
+    required: false
+    reason: "Optional, for legacy projects"
+
+  # ============================================================================
+  # Version Control & Git Tools
+  # ============================================================================
+
+  - name: git
+    version: "2.42.0"
+    required: true
+
+  - name: gh
+    version: latest
+    required: true
+    reason: "GitHub CLI for PR workflows"
+
+  - name: lazygit
+    version: latest
+    required: false
+    reason: "Recommended Git TUI"
+
+  # ============================================================================
+  # Code Quality Tools
+  # ============================================================================
+
+  - name: eslint
+    version: "8.55.0"
+    required: true
+    reason: "JavaScript linting standard"
+
+  - name: prettier
+    version: "3.1.0"
+    required: true
+    reason: "Code formatting standard"
+
+  - name: black
+    version: latest
+    required: true
+    reason: "Python formatting standard"
+
+  - name: ruff
+    version: latest
+    required: true
+    reason: "Python linting standard"
+
+  # ============================================================================
+  # Build & Development Tools
+  # ============================================================================
+
+  - name: make
+    version: latest
+    required: true
+
+  - name: docker
+    version: latest
+    required: true
+    reason: "Container development and testing"
+
+  # ============================================================================
+  # CLI Utilities (Recommended)
+  # ============================================================================
+
+  - name: jq
+    version: latest
+    required: true
+    reason: "JSON processing in scripts"
+
+  - name: ripgrep
+    version: latest
+    required: false
+    reason: "Recommended for fast searching"
+
+  - name: fd
+    version: latest
+    required: false
+    reason: "Recommended for fast file finding"
+
+  - name: bat
+    version: latest
+    required: false
+    reason: "Better code viewing"
+
+  # ============================================================================
+  # Editor (Optional but Recommended)
+  # ============================================================================
+
+  - name: neovim
+    version: latest
+    required: false
+    reason: "Team recommendation, not required"
+
+  # ============================================================================
+  # Shell Enhancement
+  # ============================================================================
+
+  - name: starship
+    version: latest
+    required: false
+    reason: "Recommended prompt"
+
+  - name: zsh
+    version: latest
+    required: false
+    reason: "Recommended shell"
+
+# CI/CD specific packages (only in CI)
+ci_packages:
+  - name: shellcheck
+    version: latest
+
+  - name: actionlint
+    version: latest
+
+# ============================================================================
+# Dotfiles (Optional but Recommended)
+# ============================================================================
+
+dotfiles:
+  - name: team-dotfiles
+    repository: https://github.com/yourteam/dotfiles.git
+    required: false
+    reason: "Standardized configurations for git, shell, editors"
+    configs:
+      - git # Team git config and aliases
+      - starship # Standardized prompt

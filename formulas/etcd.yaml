@@ -1,0 +1,31 @@
+name: etcd
+description: Distributed reliable key-value store
+type: cli
+homepage: https://github.com/etcd-io/etcd
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- etcd
+- etcdctl
+- etcdutl
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/etcd-{version}/etcd-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/etcd-{version}/etcd-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/etcd-{version}/etcd-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/etcd-{version}/etcd-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/etcd-{version}/etcd-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/etcd-{version}/etcd-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/etcd-{version}/etcd-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/etcd-{version}/etcd-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

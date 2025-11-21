@@ -1,0 +1,29 @@
+name: grafana
+description: Metrics visualization and dashboarding
+type: cli
+homepage: https://github.com/grafana/grafana
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- bin/*
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/grafana-{version}/grafana-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/grafana-{version}/grafana-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/grafana-{version}/grafana-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/grafana-{version}/grafana-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/grafana-{version}/grafana-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/grafana-{version}/grafana-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/grafana-{version}/grafana-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/grafana-{version}/grafana-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

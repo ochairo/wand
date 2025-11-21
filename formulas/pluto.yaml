@@ -1,0 +1,29 @@
+name: pluto
+description: Find deprecated Kubernetes apiVersions
+type: cli
+homepage: https://github.com/FairwindsOps/pluto
+repository: ochairo/potions
+license: Unknown
+tags:
+- kubernetes
+binaries:
+- pluto
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/pluto-{version}/pluto-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/pluto-{version}/pluto-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/pluto-{version}/pluto-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/pluto-{version}/pluto-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/pluto-{version}/pluto-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/pluto-{version}/pluto-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/pluto-{version}/pluto-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/pluto-{version}/pluto-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

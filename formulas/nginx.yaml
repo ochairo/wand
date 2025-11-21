@@ -1,0 +1,29 @@
+name: nginx
+description: High-performance HTTP server and reverse proxy
+type: cli
+homepage: https://github.com/nginx/nginx
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- nginx
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/nginx-{version}/nginx-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/nginx-{version}/nginx-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/nginx-{version}/nginx-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/nginx-{version}/nginx-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/nginx-{version}/nginx-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/nginx-{version}/nginx-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/nginx-{version}/nginx-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/nginx-{version}/nginx-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

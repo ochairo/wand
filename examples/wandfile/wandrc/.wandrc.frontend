@@ -1,0 +1,9 @@
+# Frontend Project .wandrc
+# Node 18 LTS for React application
+
+packages:
+  - name: node
+    version: "18.17.1"
+
+  - name: npm
+    version: "9.6.7"

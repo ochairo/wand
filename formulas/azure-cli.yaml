@@ -1,0 +1,29 @@
+name: azure-cli
+description: Azure CLI - Command-line interface for Microsoft Azure
+type: cli
+homepage: https://github.com/Azure/azure-cli
+repository: ochairo/potions
+license: Unknown
+tags:
+- cli
+binaries:
+- azure-cli
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/azure-cli-{version}/azure-cli-{version}-darwin-x86_64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/azure-cli-{version}/azure-cli-{version}-darwin-x86_64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/azure-cli-{version}/azure-cli-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/azure-cli-{version}/azure-cli-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/azure-cli-{version}/azure-cli-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/azure-cli-{version}/azure-cli-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/azure-cli-{version}/azure-cli-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/azure-cli-{version}/azure-cli-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

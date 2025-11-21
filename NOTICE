@@ -1,0 +1,34 @@
+NOTICE
+
+## About wand
+
+wand is a package manager that provides pre-built binaries for various software
+packages. This project consists of two components:
+
+### 1. wand CLI Tool (MIT License)
+
+The wand command-line tool itself is licensed under the MIT License (see LICENSE).
+You may freely use, modify, and distribute the wand tool.
+
+### 2. Binary Packages
+
+Pre-built software packages distributed through wand are obtained from:
+<https://github.com/ochairo/potions>
+
+Each package retains its original upstream license:
+
+When you install a package using wand, you agree to comply with that package's
+original license terms.
+
+### 3. Package Distribution Rights
+
+The pre-built binaries are built and hosted by the potions project and are
+provided to wand users under the terms specified by each package's upstream
+project.
+
+## Questions
+
+For questions about:
+- wand tool: Open an issue in this repository
+- Package licenses: Refer to the upstream project
+- Build infrastructure: See <https://github.com/ochairo/potions>

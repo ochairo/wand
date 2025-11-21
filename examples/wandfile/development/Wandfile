@@ -1,0 +1,140 @@
+# Development Environment Wandfile
+# Complete setup for modern software development
+
+version: "1.0"
+
+packages:
+  # ============================================================================
+  # Language Runtimes
+  # ============================================================================
+
+  # Node.js and package managers
+  - name: node
+    version: "20.10.0"
+
+  - name: npm
+    version: latest
+
+  - name: yarn
+    version: latest
+
+  # Python
+  - name: python
+    version: "3.11.0"
+
+  - name: pip
+    version: latest
+
+  # Go
+  - name: go
+    version: "1.21.0"
+
+  # Rust
+  - name: rust
+    version: latest
+
+  - name: cargo
+    version: latest
+
+  # ============================================================================
+  # Development Tools
+  # ============================================================================
+
+  # Version control
+  - name: git
+    version: latest
+
+  - name: gh
+    version: latest # GitHub CLI
+
+  - name: lazygit
+    version: latest # Git TUI
+
+  # Editors
+  - name: neovim
+    version: latest
+
+  # Containers
+  - name: docker
+    version: latest
+
+  # ============================================================================
+  # CLI Utilities
+  # ============================================================================
+
+  # File operations
+  - name: ripgrep
+    version: latest
+
+  - name: fd
+    version: latest
+
+  - name: bat
+    version: latest
+
+  - name: eza
+    version: latest
+
+  - name: dust
+    version: latest
+
+  # JSON/YAML processing
+  - name: jq
+    version: latest
+
+  - name: yq
+    version: latest
+
+  # HTTP tools
+  - name: curl
+    version: latest
+
+  - name: httpie
+    version: latest
+
+  # Terminal multiplexer
+  - name: tmux
+    version: latest
+
+  - name: zellij
+    version: latest
+
+  # Shell enhancement
+  - name: starship
+    version: latest
+
+  - name: zsh
+    version: latest
+
+  # ============================================================================
+  # Build Tools
+  # ============================================================================
+
+  - name: make
+    version: latest
+
+  - name: cmake
+    version: latest
+
+  # ============================================================================
+  # Monitoring & Performance
+  # ============================================================================
+
+  - name: btop
+    version: latest # Resource monitor
+
+  - name: hyperfine
+    version: latest # Benchmarking tool
+
+# ============================================================================
+# Dotfiles
+# ============================================================================
+
+dotfiles:
+  - name: dev-dotfiles
+    repository: https://github.com/ochairo/dotfiles.git
+    configs:
+      - nvim
+      - starship
+      - zsh
+      - git
