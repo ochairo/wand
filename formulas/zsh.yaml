@@ -1,0 +1,32 @@
+name: zsh
+description: Zsh is a powerful shell designed for interactive use
+type: cli
+homepage: https://www.zsh.org/
+repository: ochairo/potions
+license: MIT
+tags:
+  - shell
+  - cli
+
+binaries:
+  - zsh
+
+platforms:
+  darwin:
+    arm64:
+      download_url: "https://github.com/ochairo/potions/releases/download/zsh-{version}/zsh-{version}-darwin-arm64.tar.gz"
+      checksum_url: "https://github.com/ochairo/potions/releases/download/zsh-{version}/zsh-{version}-darwin-arm64.tar.gz.sha256"
+      requires_build: false
+    amd64:
+      download_url: "https://github.com/ochairo/potions/releases/download/zsh-{version}/zsh-{version}-darwin-x86_64.tar.gz"
+      checksum_url: "https://github.com/ochairo/potions/releases/download/zsh-{version}/zsh-{version}-darwin-x86_64.tar.gz.sha256"
+      requires_build: false
+  linux:
+    amd64:
+      download_url: "https://github.com/ochairo/potions/releases/download/zsh-{version}/zsh-{version}-linux-amd64.tar.gz"
+      checksum_url: "https://github.com/ochairo/potions/releases/download/zsh-{version}/zsh-{version}-linux-amd64.tar.gz.sha256"
+      requires_build: false
+    arm64:
+      download_url: "https://github.com/ochairo/potions/releases/download/zsh-{version}/zsh-{version}-linux-arm64.tar.gz"
+      checksum_url: "https://github.com/ochairo/potions/releases/download/zsh-{version}/zsh-{version}-linux-arm64.tar.gz.sha256"
+      requires_build: false

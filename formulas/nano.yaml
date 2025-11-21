@@ -1,0 +1,32 @@
+name: nano
+description: Nano's ANOther editor, an enhanced free Pico clone
+type: cli
+homepage: https://www.nano-editor.org/
+repository: ochairo/potions
+license: GPL-3.0
+tags:
+  - editor
+  - cli
+
+binaries:
+  - nano
+
+platforms:
+  darwin:
+    arm64:
+      download_url: "https://github.com/ochairo/potions/releases/download/nano-{version}/nano-{version}-darwin-arm64.tar.gz"
+      checksum_url: "https://github.com/ochairo/potions/releases/download/nano-{version}/nano-{version}-darwin-arm64.tar.gz.sha256"
+      requires_build: false
+    amd64:
+      download_url: "https://github.com/ochairo/potions/releases/download/nano-{version}/nano-{version}-darwin-x86_64.tar.gz"
+      checksum_url: "https://github.com/ochairo/potions/releases/download/nano-{version}/nano-{version}-darwin-x86_64.tar.gz.sha256"
+      requires_build: false
+  linux:
+    amd64:
+      download_url: "https://github.com/ochairo/potions/releases/download/nano-{version}/nano-{version}-linux-amd64.tar.gz"
+      checksum_url: "https://github.com/ochairo/potions/releases/download/nano-{version}/nano-{version}-linux-amd64.tar.gz.sha256"
+      requires_build: false
+    arm64:
+      download_url: "https://github.com/ochairo/potions/releases/download/nano-{version}/nano-{version}-linux-arm64.tar.gz"
+      checksum_url: "https://github.com/ochairo/potions/releases/download/nano-{version}/nano-{version}-linux-arm64.tar.gz.sha256"
+      requires_build: false

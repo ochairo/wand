@@ -1,0 +1,124 @@
+name: Validate Formulas
+
+on:
+  pull_request:
+    paths:
+      - "formulas/**"
+  push:
+    branches: [main]
+    paths:
+      - "formulas/**"
+
+jobs:
+  validate:
+    name: Validate Formula Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+          cache: true
+
+      - name: Build wand
+        run: make build
+
+      - name: Validate formulas with wand
+        run: |
+          echo "Validating formulas..."
+          ./wand validate formulas/*.yaml
+          echo "✅ All formulas validated successfully"
+
+      - name: Check formula naming
+        run: |
+          cd formulas
+          for file in *.yaml; do
+            if [ -f "$file" ]; then
+              name=$(echo "$file" | sed 's/\.yaml$//')
+              if ! echo "$name" | grep -qE '^[a-z][a-z0-9-]*[a-z0-9]$'; then
+                echo "❌ Invalid formula name: $file"
+                echo "   Formula names must be lowercase, alphanumeric with hyphens"
+                exit 1
+              fi
+              echo "✓ Valid name: $file"
+            fi
+          done
+
+      - name: Validate YAML syntax
+        run: |
+          for file in formulas/*.yaml; do
+            if [ -f "$file" ]; then
+              if ! python3 -c "import yaml; yaml.safe_load(open('$file'))" 2>/dev/null; then
+                echo "❌ Invalid YAML syntax: $file"
+                exit 1
+              fi
+              echo "✓ Valid YAML: $(basename $file)"
+            fi
+          done
+
+      - name: Check required fields
+        run: |
+          python3 <<'PYTHON'
+          import yaml
+          import sys
+          from pathlib import Path
+
+          required_fields = ['name', 'version', 'description', 'homepage', 'license', 'releases']
+          errors = []
+
+          for formula_file in Path('formulas').glob('*.yaml'):
+              with open(formula_file) as f:
+                  formula = yaml.safe_load(f)
+
+              for field in required_fields:
+                  if field not in formula or not formula[field]:
+                      errors.append(f"{formula_file.name}: missing required field '{field}'")
+
+              if 'releases' in formula and len(formula['releases']) == 0:
+                  errors.append(f"{formula_file.name}: must have at least one release")
+
+          if errors:
+              print("❌ Validation errors:")
+              for error in errors:
+                  print(f"   {error}")
+              sys.exit(1)
+
+          print("✅ All formulas have required fields")
+          PYTHON
+
+      - name: Validate HTTPS URLs
+        run: |
+          python3 <<'PYTHON'
+          import yaml
+          import sys
+          from pathlib import Path
+
+          errors = []
+
+          for formula_file in Path('formulas').glob('*.yaml'):
+              with open(formula_file) as f:
+                  formula = yaml.safe_load(f)
+
+              # Check homepage
+              if 'homepage' in formula:
+                  if not formula['homepage'].startswith('https://'):
+                      errors.append(f"{formula_file.name}: homepage must use HTTPS")
+
+              # Check release URLs
+              if 'releases' in formula:
+                  for platform, url in formula['releases'].items():
+                      if not url.startswith('https://'):
+                          errors.append(f"{formula_file.name}: release URL for {platform} must use HTTPS")
+
+          if errors:
+              print("❌ URL validation errors:")
+              for error in errors:
+                  print(f"   {error}")
+              sys.exit(1)
+
+          print("✅ All URLs use HTTPS")
+          PYTHON

@@ -1,0 +1,31 @@
+name: microsoft-edge
+description: Microsoft Edge web browser
+type: gui
+homepage: https://www.microsoft.com/edge
+repository: ochairo/potions
+license: Proprietary
+tags:
+  - browser
+  - web
+
+app_name: Microsoft Edge.app
+
+platforms:
+  darwin:
+    amd64:
+      download_url: "https://github.com/ochairo/potions/releases/download/microsoft-edge-{version}/microsoft-edge-{version}-darwin-x86_64.pkg"
+      checksum_url: "https://github.com/ochairo/potions/releases/download/microsoft-edge-{version}/microsoft-edge-{version}-darwin-x86_64.pkg.sha256"
+      requires_build: false
+    arm64:
+      download_url: "https://github.com/ochairo/potions/releases/download/microsoft-edge-{version}/microsoft-edge-{version}-darwin-arm64.pkg"
+      checksum_url: "https://github.com/ochairo/potions/releases/download/microsoft-edge-{version}/microsoft-edge-{version}-darwin-arm64.pkg.sha256"
+      requires_build: false
+  linux:
+    amd64:
+      download_url: "https://github.com/ochairo/potions/releases/download/microsoft-edge-{version}/microsoft-edge-{version}-linux-amd64.deb"
+      checksum_url: "https://github.com/ochairo/potions/releases/download/microsoft-edge-{version}/microsoft-edge-{version}-linux-amd64.deb.sha256"
+      requires_build: false
+    arm64:
+      download_url: "https://github.com/ochairo/potions/releases/download/microsoft-edge-{version}/microsoft-edge-{version}-linux-arm64.deb"
+      checksum_url: "https://github.com/ochairo/potions/releases/download/microsoft-edge-{version}/microsoft-edge-{version}-linux-arm64.deb.sha256"
+      requires_build: false
