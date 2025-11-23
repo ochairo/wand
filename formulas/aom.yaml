@@ -1,0 +1,31 @@
+name: aom
+description: Alliance for Open Media AV1 codec library
+type: cli
+homepage: https://aomedia.googlesource.com/aom/
+repository: ochairo/potions
+license: BSD-2-Clause
+tags:
+  - codec
+  - video
+  - av1
+binaries:
+  - "*"
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/aom-{version}/aom-{version}-darwin-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/aom-{version}/aom-{version}-darwin-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/aom-{version}/aom-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/aom-{version}/aom-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/aom-{version}/aom-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/aom-{version}/aom-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/aom-{version}/aom-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/aom-{version}/aom-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

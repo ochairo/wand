@@ -1,0 +1,31 @@
+name: eza
+description: Modern replacement for ls with colors and icons
+type: cli
+homepage: https://eza.rocks/
+repository: ochairo/potions
+license: MIT
+tags:
+  - cli
+  - ls
+  - files
+binaries:
+  - eza
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/eza-{version}/eza-{version}-darwin-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/eza-{version}/eza-{version}-darwin-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/eza-{version}/eza-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/eza-{version}/eza-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/eza-{version}/eza-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/eza-{version}/eza-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/eza-{version}/eza-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/eza-{version}/eza-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

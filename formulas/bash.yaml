@@ -1,0 +1,30 @@
+name: bash
+description: Bourne-Again SHell, a UNIX command interpreter
+type: cli
+homepage: https://www.gnu.org/software/bash/
+repository: ochairo/potions
+license: GPL-3.0-or-later
+tags:
+  - shell
+  - cli
+binaries:
+  - bash
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/bash-{version}/bash-{version}-darwin-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/bash-{version}/bash-{version}-darwin-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/bash-{version}/bash-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/bash-{version}/bash-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/bash-{version}/bash-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/bash-{version}/bash-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/bash-{version}/bash-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/bash-{version}/bash-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

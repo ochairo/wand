@@ -1,0 +1,31 @@
+name: pyenv
+description: Python version management
+type: cli
+homepage: https://github.com/pyenv/pyenv
+repository: ochairo/potions
+license: MIT
+tags:
+  - python
+  - version-manager
+  - cli
+binaries:
+  - pyenv
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/pyenv-{version}/pyenv-{version}-darwin-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/pyenv-{version}/pyenv-{version}-darwin-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/pyenv-{version}/pyenv-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/pyenv-{version}/pyenv-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/pyenv-{version}/pyenv-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/pyenv-{version}/pyenv-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/pyenv-{version}/pyenv-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/pyenv-{version}/pyenv-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

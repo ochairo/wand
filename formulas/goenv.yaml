@@ -1,0 +1,31 @@
+name: goenv
+description: Go version management
+type: cli
+homepage: https://github.com/go-nv/goenv
+repository: ochairo/potions
+license: MIT
+tags:
+  - golang
+  - version-manager
+  - cli
+binaries:
+  - goenv
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/goenv-{version}/goenv-{version}-darwin-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/goenv-{version}/goenv-{version}-darwin-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/goenv-{version}/goenv-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/goenv-{version}/goenv-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/goenv-{version}/goenv-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/goenv-{version}/goenv-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/goenv-{version}/goenv-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/goenv-{version}/goenv-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

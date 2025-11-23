@@ -1,0 +1,31 @@
+name: act
+description: Run your GitHub Actions locally
+type: cli
+homepage: https://github.com/nektos/act
+repository: ochairo/potions
+license: MIT
+tags:
+  - cli
+  - github
+  - actions
+binaries:
+  - act
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/act-{version}/act-{version}-darwin-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/act-{version}/act-{version}-darwin-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/act-{version}/act-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/act-{version}/act-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/act-{version}/act-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/act-{version}/act-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/act-{version}/act-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/act-{version}/act-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false
