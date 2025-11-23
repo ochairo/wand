@@ -90,7 +90,19 @@ jobs:
           git diff --exit-code go.mod go.sum
 
       - name: Build for all platforms
-        run: make dist
+        run: |
+          echo "Building for all platforms..."
+          mkdir -p dist
+
+          # Build for each platform
+          for platform in darwin-amd64 darwin-arm64 linux-amd64 linux-arm64; do
+            OS=${platform%-*}
+            ARCH=${platform#*-}
+            OUTPUT="dist/wand-$OS-$ARCH"
+
+            echo "Building $platform..."
+            GOOS=$OS GOARCH=$ARCH go build -o $OUTPUT ./cmd/wand
+          done
 
       - name: Verify binaries
         run: |
