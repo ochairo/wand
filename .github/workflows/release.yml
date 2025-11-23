@@ -36,7 +36,34 @@ jobs:
           echo "COMMIT=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
       - name: Build release archives
-        run: VERSION=${{ steps.get_version.outputs.VERSION }} make dist-archive
+        run: |
+          VERSION=${{ steps.get_version.outputs.VERSION }}
+          BUILD_TIME=${{ steps.get_version.outputs.BUILD_TIME }}
+          COMMIT=${{ steps.get_version.outputs.COMMIT }}
+
+          echo "Building for all platforms..."
+          mkdir -p dist
+
+          # Build for each platform
+          for platform in darwin-amd64 darwin-arm64 linux-amd64 linux-arm64; do
+            OS=${platform%-*}
+            ARCH=${platform#*-}
+            BINARY="dist/wand-$OS-$ARCH"
+
+            echo "Building $platform..."
+            GOOS=$OS GOARCH=$ARCH go build \
+              -ldflags "-X main.Version=${VERSION} -X main.BuildTime=${BUILD_TIME} -X main.Commit=${COMMIT}" \
+              -o $BINARY ./cmd/wand
+
+            # Create archive
+            ARCHIVE="wand-${VERSION}-$OS-$ARCH.tar.gz"
+            cd dist
+            tar -czf $ARCHIVE $(basename $BINARY)
+            shasum -a 256 $ARCHIVE > $ARCHIVE.sha256
+            cd ..
+
+            echo "Created $ARCHIVE"
+          done
 
       - name: Verify build artifacts
         run: |
