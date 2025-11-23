@@ -428,10 +428,7 @@ func (s *WandfileService) Validate(path string) (*ValidationResult, error) {
 	}
 
 	// Check GUI apps (legacy)
-	for _, gui := range wandfile.GUI {
-		result.Packages = append(result.Packages, gui)
-		// TODO: Check if formula exists
-	}
+	result.Packages = append(result.Packages, wandfile.GUI...)
 
 	// Check symlinks (new format)
 	if wandfile.HasSymlinks() {
