@@ -22,6 +22,16 @@ type PostInstallHook struct {
 	Env      map[string]string `yaml:"env,omitempty"`
 }
 
+// ShellPluginConfig represents shell plugin-specific configuration
+type ShellPluginConfig struct {
+	Shell       string   `yaml:"shell"`        // bash, zsh, fish
+	GitURL      string   `yaml:"git_url"`      // Git repository URL
+	SourceFile  string   `yaml:"source_file"`  // File to source (e.g., plugin.zsh)
+	InstallPath string   `yaml:"install_path"` // Relative path under ~/.wand/
+	CustomSetup bool     `yaml:"custom_setup"` // Requires custom setup logic
+	SourceLines []string `yaml:"source_lines"` // Custom source lines (for oh-my-zsh)
+}
+
 // Formula represents a package definition from the potions repository
 type Formula struct {
 	// Required fields
@@ -48,8 +58,9 @@ type Formula struct {
 	Platforms PlatformMap `yaml:"platforms"`
 
 	// Hooks and dependencies
-	PostInstall  *PostInstallHook `yaml:"post_install,omitempty"`
-	Dependencies []string         `yaml:"dependencies,omitempty"`
+	PostInstall  *PostInstallHook   `yaml:"post_install,omitempty"`
+	Dependencies []string           `yaml:"dependencies,omitempty"`
+	ShellPlugin  *ShellPluginConfig `yaml:"shell_plugin,omitempty"`
 
 	// Version constraints
 	MinVersion string `yaml:"min_version,omitempty"`
@@ -170,4 +181,27 @@ func (f *Formula) IsGUI() bool {
 // IsDotfile returns true if this is a dotfile package
 func (f *Formula) IsDotfile() bool {
 	return f.Type == PackageTypeDotfile
+}
+
+// IsShellPlugin returns true if this has shell plugin configuration
+func (f *Formula) IsShellPlugin() bool {
+	return f.ShellPlugin != nil && f.ShellPlugin.GitURL != ""
+}
+
+// GetShellConfigPath returns the shell config file path for the current user
+func (f *Formula) GetShellConfigPath(homeDir string) string {
+	if f.ShellPlugin == nil {
+		return ""
+	}
+
+	switch f.ShellPlugin.Shell {
+	case "zsh":
+		return homeDir + "/.zshrc"
+	case "bash":
+		return homeDir + "/.bashrc"
+	case "fish":
+		return homeDir + "/.config/fish/config.fish"
+	default:
+		return ""
+	}
 }

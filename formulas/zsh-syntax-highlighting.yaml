@@ -1,0 +1,39 @@
+name: zsh-syntax-highlighting
+description: Fish shell-like syntax highlighting for Zsh
+type: cli
+homepage: https://github.com/zsh-users/zsh-syntax-highlighting
+repository: ochairo/potions
+license: BSD-3-Clause
+tags:
+  - zsh
+  - shell
+  - plugin
+binaries:
+  - "*"
+
+# Shell plugin configuration
+shell_plugin:
+  shell: zsh
+  git_url: https://github.com/zsh-users/zsh-syntax-highlighting.git
+  source_file: zsh-syntax-highlighting.zsh
+  install_path: plugins/zsh-syntax-highlighting
+
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/zsh-syntax-highlighting-{version}/zsh-syntax-highlighting-{version}-darwin-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/zsh-syntax-highlighting-{version}/zsh-syntax-highlighting-{version}-darwin-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/zsh-syntax-highlighting-{version}/zsh-syntax-highlighting-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/zsh-syntax-highlighting-{version}/zsh-syntax-highlighting-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/zsh-syntax-highlighting-{version}/zsh-syntax-highlighting-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/zsh-syntax-highlighting-{version}/zsh-syntax-highlighting-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/zsh-syntax-highlighting-{version}/zsh-syntax-highlighting-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/zsh-syntax-highlighting-{version}/zsh-syntax-highlighting-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

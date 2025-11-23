@@ -1,0 +1,42 @@
+name: oh-my-zsh
+description: A delightful community-driven framework for managing your Zsh configuration
+type: cli
+homepage: https://ohmyz.sh/
+repository: ochairo/potions
+license: MIT
+tags:
+  - zsh
+  - shell
+  - framework
+binaries:
+  - "*"
+
+# Shell plugin configuration
+shell_plugin:
+  shell: zsh
+  git_url: https://github.com/ohmyzsh/ohmyzsh.git
+  install_path: oh-my-zsh
+  custom_setup: true
+  source_lines:
+    - export ZSH="$HOME/.wand/oh-my-zsh"
+    - source $ZSH/oh-my-zsh.sh
+
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/oh-my-zsh-{version}/oh-my-zsh-{version}-darwin-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/oh-my-zsh-{version}/oh-my-zsh-{version}-darwin-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/oh-my-zsh-{version}/oh-my-zsh-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/oh-my-zsh-{version}/oh-my-zsh-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/oh-my-zsh-{version}/oh-my-zsh-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/oh-my-zsh-{version}/oh-my-zsh-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/oh-my-zsh-{version}/oh-my-zsh-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/oh-my-zsh-{version}/oh-my-zsh-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

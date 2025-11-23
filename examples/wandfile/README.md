@@ -1,77 +1,71 @@
 # Wandfile Examples
 
-Wandfiles define system-wide package installations and configurations declaratively.
+This directory contains example wandfiles demonstrating the format and capabilities.
 
-## Overview
+## Basic Example
 
-A Wandfile allows you to:
-- Declare all packages and versions for your system
-- Share configurations across machines
-- Reproducibly set up development environments
-- Version control your tool stack
+See [`wandfile.yaml`](./wandfile.yaml) for a complete development environment setup.
 
-## Structure
+## Format
 
+```yaml
+formulas:
+  - package-name              # Install latest version
+  - package-name@1.2.3        # Install specific version
+  - shell-plugin-name         # Install shell plugins (auto-configured)
+
+symlinks:
+  .target: source/path        # Creates ~/.target -> ~/.dotfiles/source/path
 ```
-wandfile/
-├── README.md
-├── basic/
-│   └── Wandfile              # Simple package list
-├── development/
-│   └── Wandfile              # Full dev environment
-├── team/
-│   └── Wandfile              # Team-wide standards
-└── with-dotfiles/
-    └── Wandfile              # Packages + dotfiles together
-```
+
+## Features
+
+- **Simple formula syntax**: Just package names with optional `@version`
+- **Shell plugin support**: Plugins like `zsh-syntax-highlighting` are automatically configured
+- **Symlink management**: Define dotfile symlinks from `~/.dotfiles/` to `~/`
+- **Version pinning**: Lock specific versions with `@version` syntax
 
 ## Usage
 
 ```bash
-# Install all packages from a Wandfile
-wand install --wandfile ./Wandfile
+# Validate
+wand wandfile validate examples/wandfile.yaml
 
-# Validate a Wandfile
-wand validate ./Wandfile
+# Show summary
+wand wandfile show examples/wandfile.yaml
 
-# Show what would be installed
-wand install --wandfile ./Wandfile --dry-run
+# Install (careful - this will modify your system!)
+wand wandfile install examples/wandfile.yaml
 ```
 
-## Examples
+## Shell Plugins
 
-### Basic Wandfile
-See [basic/](./basic/) for a minimal example with essential CLI tools.
-
-### Development Environment
-See [development/](./development/) for a complete development setup.
-
-### Team Configuration
-See [team/](./team/) for standardized team tooling.
-
-### With Dotfiles
-See [with-dotfiles/](./with-dotfiles/) for combining packages and dotfiles in one Wandfile.
-
-## Wandfile Format
+Shell plugins are automatically configured in your shell config (`.zshrc`, `.bashrc`, etc.):
 
 ```yaml
-version: "1.0"
-
-packages:
-  - name: jq
-    version: "1.7.1"
-  - name: ripgrep
-    version: latest
-
-dotfiles:
-  - name: my-dotfiles
-    repository: https://github.com/user/dotfiles.git
-    configs:
-      - nvim
-      - zsh
+formulas:
+  - zsh-syntax-highlighting
+  - zsh-autosuggestions
+  - oh-my-zsh
 ```
 
-## Related Documentation
+These will:
+1. Clone the Git repository to `~/.wand/plugins/`
+2. Add source lines to your shell config
+3. Use wand markers to track managed plugins
+4. Prevent duplicate source lines
 
-- [Wandfile Specification](../../docs/WANDFILE.md)
-- [Getting Started Guide](../../docs/GETTING_STARTED.md)
+## Symlinks
+
+Symlinks assume you have your dotfiles in `~/.dotfiles/`:
+
+```yaml
+symlinks:
+  .zshrc: shell/zshrc                    # ~/.zshrc -> ~/.dotfiles/shell/zshrc
+  .config/nvim/init.lua: nvim/init.lua   # ~/.config/nvim/init.lua -> ~/.dotfiles/nvim/init.lua
+```
+
+The system will:
+- Create parent directories automatically
+- Backup existing files with `.wand-backup` extension
+- Skip if symlink already points to the correct target

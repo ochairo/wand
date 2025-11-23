@@ -84,6 +84,9 @@ go.work
 tests/temp/
 test-dist/
 coverage.*
+test_*.yaml
+test_*.yml
+test-dotfiles/
 
 # Release Artifacts
 # =============================================================================

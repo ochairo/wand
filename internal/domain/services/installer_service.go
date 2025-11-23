@@ -13,15 +13,16 @@ import (
 
 // InstallerService handles package installation logic
 type InstallerService struct {
-	formulaRepo   interfaces.FormulaRepository
-	registryRepo  interfaces.RegistryRepository
-	downloader    interfaces.Downloader
-	extractor     interfaces.Extractor
-	fs            interfaces.FileSystem
-	shellExecutor interfaces.ShellExecutor
-	versionSvc    *VersionService
-	wandDir       string
-	homeDir       string
+	formulaRepo    interfaces.FormulaRepository
+	registryRepo   interfaces.RegistryRepository
+	downloader     interfaces.Downloader
+	extractor      interfaces.Extractor
+	fs             interfaces.FileSystem
+	shellExecutor  interfaces.ShellExecutor
+	versionSvc     *VersionService
+	shellPluginSvc *ShellPluginService
+	wandDir        string
+	homeDir        string
 }
 
 // NewInstallerService creates a new installer service
@@ -37,15 +38,16 @@ func NewInstallerService(
 	homeDir string,
 ) *InstallerService {
 	return &InstallerService{
-		formulaRepo:   formulaRepo,
-		registryRepo:  registryRepo,
-		downloader:    downloader,
-		extractor:     extractor,
-		fs:            fs,
-		shellExecutor: shellExecutor,
-		versionSvc:    versionSvc,
-		wandDir:       wandDir,
-		homeDir:       homeDir,
+		formulaRepo:    formulaRepo,
+		registryRepo:   registryRepo,
+		downloader:     downloader,
+		extractor:      extractor,
+		fs:             fs,
+		shellExecutor:  shellExecutor,
+		versionSvc:     versionSvc,
+		shellPluginSvc: NewShellPluginService(fs, shellExecutor, homeDir, wandDir),
+		wandDir:        wandDir,
+		homeDir:        homeDir,
 	}
 }
 
@@ -73,6 +75,21 @@ func (s *InstallerService) InstallPackage(packageName, versionStr string) error 
 
 	if _, exists := registry.GetPackage(packageName, version.String()); exists {
 		return errs.NewWithDetails(errs.ErrPackageInstalled, "Package already installed", fmt.Sprintf("package: %q, version: %q", packageName, version.String()))
+	}
+
+	// Check if this is a shell plugin
+	if formula.IsShellPlugin() {
+		// Install as shell plugin (clone from Git)
+		if err := s.shellPluginSvc.Install(formula, version.String()); err != nil {
+			return err
+		}
+
+		// Update registry
+		if err := s.addToRegistry(packageName, version.String(), formula.Type, filepath.Join(s.wandDir, formula.ShellPlugin.InstallPath)); err != nil {
+			return errs.Wrap(errs.ErrRegistryCorrupted, "Failed to update registry", err)
+		}
+
+		return nil
 	}
 
 	// Get platform config
@@ -315,9 +332,18 @@ func (s *InstallerService) UninstallPackage(packageName, version string) error {
 		return errs.NewWithDetails(errs.ErrPackageNotInstalled, "Package not installed", fmt.Sprintf("package: %q, version: %q", packageName, version))
 	}
 
-	// Remove installation directory
-	if err := s.fs.RemoveAll(pkg.InstallPath); err != nil {
-		return errs.Wrap(errs.ErrPermissionDenied, "Failed to remove installation", err)
+	// Check if this is a shell plugin
+	formula, err := s.formulaRepo.GetFormula(packageName)
+	if err == nil && formula.IsShellPlugin() {
+		// Uninstall shell plugin (remove from shell config)
+		if err := s.shellPluginSvc.Uninstall(formula); err != nil {
+			return err
+		}
+	} else {
+		// Remove installation directory for regular packages
+		if err := s.fs.RemoveAll(pkg.InstallPath); err != nil {
+			return errs.Wrap(errs.ErrPermissionDenied, "Failed to remove installation", err)
+		}
 	}
 
 	// Update registry

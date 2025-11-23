@@ -1,0 +1,39 @@
+name: zsh-autosuggestions
+description: Fish-like autosuggestions for Zsh
+type: cli
+homepage: https://github.com/zsh-users/zsh-autosuggestions
+repository: ochairo/potions
+license: MIT
+tags:
+  - zsh
+  - shell
+  - plugin
+binaries:
+  - "*"
+
+# Shell plugin configuration
+shell_plugin:
+  shell: zsh
+  git_url: https://github.com/zsh-users/zsh-autosuggestions.git
+  source_file: zsh-autosuggestions.zsh
+  install_path: plugins/zsh-autosuggestions
+
+platforms:
+  darwin:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/zsh-autosuggestions-{version}/zsh-autosuggestions-{version}-darwin-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/zsh-autosuggestions-{version}/zsh-autosuggestions-{version}-darwin-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/zsh-autosuggestions-{version}/zsh-autosuggestions-{version}-darwin-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/zsh-autosuggestions-{version}/zsh-autosuggestions-{version}-darwin-arm64.tar.gz.sha256
+      requires_build: false
+  linux:
+    amd64:
+      download_url: https://github.com/ochairo/potions/releases/download/zsh-autosuggestions-{version}/zsh-autosuggestions-{version}-linux-amd64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/zsh-autosuggestions-{version}/zsh-autosuggestions-{version}-linux-amd64.tar.gz.sha256
+      requires_build: false
+    arm64:
+      download_url: https://github.com/ochairo/potions/releases/download/zsh-autosuggestions-{version}/zsh-autosuggestions-{version}-linux-arm64.tar.gz
+      checksum_url: https://github.com/ochairo/potions/releases/download/zsh-autosuggestions-{version}/zsh-autosuggestions-{version}-linux-arm64.tar.gz.sha256
+      requires_build: false

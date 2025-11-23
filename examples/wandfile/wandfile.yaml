@@ -1,0 +1,46 @@
+# Complete development environment configuration
+# Install with: wand wandfile install
+
+formulas:
+  # Package managers and version managers
+  - fnm
+  - pyenv
+  - goenv
+
+  # Shell and terminal
+  - zsh
+  - zsh-syntax-highlighting
+  - zsh-autosuggestions
+  - starship
+
+  # Core utilities
+  - git
+  - neovim@0.9.5
+  - tmux
+
+  # Modern CLI tools
+  - bat
+  - eza
+  - ripgrep
+  - fzf
+  - jq
+
+symlinks:
+  # Shell configurations
+  .zshrc: shell/zshrc
+  .zshenv: shell/zshenv
+  .bashrc: shell/bashrc
+
+  # Git configurations
+  .gitconfig: git/gitconfig
+  .gitignore_global: git/gitignore_global
+
+  # Neovim (Lua-based)
+  .config/nvim/init.lua: nvim/init.lua
+  .config/nvim/lua: nvim/lua
+
+  # Tmux
+  .tmux.conf: tmux/tmux.conf
+
+  # Starship prompt
+  .config/starship/starship.toml: starship/starship.toml

@@ -123,6 +123,18 @@ func main() {
 		wandfileRepo,
 		wandfileService,
 	)
+	wandfileInitHandler := domainorchestrators.NewWandfileInitCommandHandler(
+		wandfileService,
+	)
+	wandfileValidateHandler := domainorchestrators.NewWandfileValidateCommandHandler(
+		wandfileService,
+	)
+	wandfileShowHandler := domainorchestrators.NewWandfileShowCommandHandler(
+		wandfileService,
+	)
+	wandfileUpdateHandler := domainorchestrators.NewWandfileUpdateCommandHandler(
+		wandfileService,
+	)
 	searchHandler := domainorchestrators.NewSearchCommandHandler(
 		formulaRepo,
 	)
@@ -158,6 +170,10 @@ func main() {
 		wandfileInstallHandler,
 		wandfileCheckHandler,
 		wandfileDumpHandler,
+		wandfileInitHandler,
+		wandfileValidateHandler,
+		wandfileShowHandler,
+		wandfileUpdateHandler,
 		searchHandler,
 		infoHandler,
 		doctorHandler,

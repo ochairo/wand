@@ -2,12 +2,16 @@ package entities
 
 // Wandfile represents a wandfile for declarative system configuration
 type Wandfile struct {
-	CLI      []WandfileCLI     `yaml:"cli"`      // CLI packages with versions
-	GUI      []string          `yaml:"gui"`      // GUI packages (no versions)
-	Dotfiles *WandfileDotfiles `yaml:"dotfiles"` // Dotfile configuration
+	Formulas []string          `yaml:"formulas,omitempty"` // All formulas (format: "name" or "name@version")
+	Symlinks map[string]string `yaml:"symlinks,omitempty"` // Dotfile symlinks (target -> source)
+
+	// Legacy fields for backward compatibility
+	CLI      []WandfileCLI     `yaml:"cli,omitempty"`      // CLI packages with versions
+	GUI      []string          `yaml:"gui,omitempty"`      // GUI packages (no versions)
+	Dotfiles *WandfileDotfiles `yaml:"dotfiles,omitempty"` // Dotfile configuration
 }
 
-// WandfileCLI represents a CLI package entry
+// WandfileCLI represents a CLI package entry (legacy)
 type WandfileCLI struct {
 	Name    string `yaml:"name"`    // Package name
 	Version string `yaml:"version"` // Version constraint or exact version
@@ -22,12 +26,41 @@ type WandfileDotfiles struct {
 // NewWandfile creates a new Wandfile
 func NewWandfile() *Wandfile {
 	return &Wandfile{
-		CLI: make([]WandfileCLI, 0),
-		GUI: make([]string, 0),
+		Formulas: make([]string, 0),
+		Symlinks: make(map[string]string),
+		CLI:      make([]WandfileCLI, 0),
+		GUI:      make([]string, 0),
 	}
 }
 
-// AddCLI adds a CLI package
+// AddFormula adds a formula to the wandfile
+func (w *Wandfile) AddFormula(name, version string) {
+	if version == "" || version == "latest" {
+		w.Formulas = append(w.Formulas, name)
+	} else {
+		w.Formulas = append(w.Formulas, name+"@"+version)
+	}
+}
+
+// AddSymlink adds a symlink mapping
+func (w *Wandfile) AddSymlink(target, source string) {
+	if w.Symlinks == nil {
+		w.Symlinks = make(map[string]string)
+	}
+	w.Symlinks[target] = source
+}
+
+// HasFormulas checks if formulas are defined
+func (w *Wandfile) HasFormulas() bool {
+	return len(w.Formulas) > 0
+}
+
+// HasSymlinks checks if symlinks are defined
+func (w *Wandfile) HasSymlinks() bool {
+	return len(w.Symlinks) > 0
+}
+
+// AddCLI adds a CLI package (legacy)
 func (w *Wandfile) AddCLI(name, version string) {
 	w.CLI = append(w.CLI, WandfileCLI{
 		Name:    name,
@@ -35,7 +68,7 @@ func (w *Wandfile) AddCLI(name, version string) {
 	})
 }
 
-// AddGUI adds a GUI package
+// AddGUI adds a GUI package (legacy)
 func (w *Wandfile) AddGUI(name string) {
 	w.GUI = append(w.GUI, name)
 }
@@ -75,5 +108,5 @@ func (w *Wandfile) HasDotfiles() bool {
 
 // IsEmpty returns true if the wandfile has no entries
 func (w *Wandfile) IsEmpty() bool {
-	return len(w.CLI) == 0 && len(w.GUI) == 0 && !w.HasDotfiles()
+	return len(w.Formulas) == 0 && len(w.Symlinks) == 0 && len(w.CLI) == 0 && len(w.GUI) == 0 && !w.HasDotfiles()
 }

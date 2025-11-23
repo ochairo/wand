@@ -10,23 +10,27 @@ import (
 
 // CobraCLIAdapter wraps Cobra to implement the CLIAdapter interface
 type CobraCLIAdapter struct {
-	rootCmd                *cobra.Command
-	installHandler         interfaces.CommandHandler
-	listHandler            interfaces.CommandHandler
-	switchHandler          interfaces.CommandHandler
-	uninstallHandler       interfaces.CommandHandler
-	initHandler            interfaces.CommandHandler
-	addHandler             interfaces.CommandHandler
-	removeHandler          interfaces.CommandHandler
-	wandfileInstallHandler interfaces.CommandHandler
-	wandfileCheckHandler   interfaces.CommandHandler
-	wandfileDumpHandler    interfaces.CommandHandler
-	searchHandler          interfaces.CommandHandler
-	infoHandler            interfaces.CommandHandler
-	doctorHandler          interfaces.CommandHandler
-	updateHandler          interfaces.CommandHandler
-	versionHandler         interfaces.CommandHandler
-	outdatedHandler        interfaces.CommandHandler
+	rootCmd                 *cobra.Command
+	installHandler          interfaces.CommandHandler
+	listHandler             interfaces.CommandHandler
+	switchHandler           interfaces.CommandHandler
+	uninstallHandler        interfaces.CommandHandler
+	initHandler             interfaces.CommandHandler
+	addHandler              interfaces.CommandHandler
+	removeHandler           interfaces.CommandHandler
+	wandfileInstallHandler  interfaces.CommandHandler
+	wandfileCheckHandler    interfaces.CommandHandler
+	wandfileDumpHandler     interfaces.CommandHandler
+	wandfileInitHandler     interfaces.CommandHandler
+	wandfileValidateHandler interfaces.CommandHandler
+	wandfileShowHandler     interfaces.CommandHandler
+	wandfileUpdateHandler   interfaces.CommandHandler
+	searchHandler           interfaces.CommandHandler
+	infoHandler             interfaces.CommandHandler
+	doctorHandler           interfaces.CommandHandler
+	updateHandler           interfaces.CommandHandler
+	versionHandler          interfaces.CommandHandler
+	outdatedHandler         interfaces.CommandHandler
 }
 
 // NewCobraCLIAdapter creates a new Cobra CLI adapter
@@ -41,6 +45,10 @@ func NewCobraCLIAdapter(
 	wandfileInstallHandler interfaces.CommandHandler,
 	wandfileCheckHandler interfaces.CommandHandler,
 	wandfileDumpHandler interfaces.CommandHandler,
+	wandfileInitHandler interfaces.CommandHandler,
+	wandfileValidateHandler interfaces.CommandHandler,
+	wandfileShowHandler interfaces.CommandHandler,
+	wandfileUpdateHandler interfaces.CommandHandler,
 	searchHandler interfaces.CommandHandler,
 	infoHandler interfaces.CommandHandler,
 	doctorHandler interfaces.CommandHandler,
@@ -49,22 +57,26 @@ func NewCobraCLIAdapter(
 	outdatedHandler interfaces.CommandHandler,
 ) *CobraCLIAdapter {
 	adapter := &CobraCLIAdapter{
-		installHandler:         installHandler,
-		listHandler:            listHandler,
-		switchHandler:          switchHandler,
-		uninstallHandler:       uninstallHandler,
-		initHandler:            initHandler,
-		addHandler:             addHandler,
-		removeHandler:          removeHandler,
-		wandfileInstallHandler: wandfileInstallHandler,
-		wandfileCheckHandler:   wandfileCheckHandler,
-		wandfileDumpHandler:    wandfileDumpHandler,
-		searchHandler:          searchHandler,
-		infoHandler:            infoHandler,
-		doctorHandler:          doctorHandler,
-		updateHandler:          updateHandler,
-		versionHandler:         versionHandler,
-		outdatedHandler:        outdatedHandler,
+		installHandler:          installHandler,
+		listHandler:             listHandler,
+		switchHandler:           switchHandler,
+		uninstallHandler:        uninstallHandler,
+		initHandler:             initHandler,
+		addHandler:              addHandler,
+		removeHandler:           removeHandler,
+		wandfileInstallHandler:  wandfileInstallHandler,
+		wandfileCheckHandler:    wandfileCheckHandler,
+		wandfileDumpHandler:     wandfileDumpHandler,
+		wandfileInitHandler:     wandfileInitHandler,
+		wandfileValidateHandler: wandfileValidateHandler,
+		wandfileShowHandler:     wandfileShowHandler,
+		wandfileUpdateHandler:   wandfileUpdateHandler,
+		searchHandler:           searchHandler,
+		infoHandler:             infoHandler,
+		doctorHandler:           doctorHandler,
+		updateHandler:           updateHandler,
+		versionHandler:          versionHandler,
+		outdatedHandler:         outdatedHandler,
 	}
 	adapter.rootCmd = &cobra.Command{
 		Use:   "wand",
@@ -81,6 +93,11 @@ transparent version switching per project.`,
 // Execute runs the CLI application
 func (c *CobraCLIAdapter) Execute() error {
 	return c.rootCmd.Execute()
+}
+
+// RootCommand returns the root command for registering additional commands
+func (c *CobraCLIAdapter) RootCommand() *cobra.Command {
+	return c.rootCmd
 }
 
 // cobraCommandContext wraps a Cobra command to implement CommandContext
@@ -329,6 +346,10 @@ Use wandfile to install, check, or export your system configuration.`,
 	cmd.AddCommand(c.createWandfileInstallCommand())
 	cmd.AddCommand(c.createWandfileCheckCommand())
 	cmd.AddCommand(c.createWandfileDumpCommand())
+	cmd.AddCommand(c.createWandfileInitCommand())
+	cmd.AddCommand(c.createWandfileValidateCommand())
+	cmd.AddCommand(c.createWandfileShowCommand())
+	cmd.AddCommand(c.createWandfileUpdateCommand())
 
 	return cmd
 }
@@ -390,6 +411,84 @@ Examples:
 		RunE: func(cmd *cobra.Command, args []string) error {
 			ctx := &cobraCommandContext{cmd: cmd, args: args}
 			return c.wandfileDumpHandler.Handle(ctx)
+		},
+	}
+
+	return cmd
+}
+
+// createWandfileInitCommand creates the wandfile init command
+func (c *CobraCLIAdapter) createWandfileInitCommand() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "init",
+		Short: "Initialize a new wandfile",
+		Long: `Create a new wandfile with common packages in the current directory.
+
+Examples:
+  wand wandfile init`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			ctx := &cobraCommandContext{cmd: cmd, args: args}
+			return c.wandfileInitHandler.Handle(ctx)
+		},
+	}
+
+	return cmd
+}
+
+// createWandfileValidateCommand creates the wandfile validate command
+func (c *CobraCLIAdapter) createWandfileValidateCommand() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "validate [wandfile]",
+		Short: "Validate a wandfile",
+		Long: `Check if a wandfile is valid and all packages are available.
+
+If no path is specified, validates './wandfile.yaml' in the current directory.
+
+Examples:
+  wand wandfile validate
+  wand wandfile validate my-system.yaml`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			ctx := &cobraCommandContext{cmd: cmd, args: args}
+			return c.wandfileValidateHandler.Handle(ctx)
+		},
+	}
+
+	return cmd
+}
+
+// createWandfileShowCommand creates the wandfile show command
+func (c *CobraCLIAdapter) createWandfileShowCommand() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "show [wandfile]",
+		Short: "Display wandfile summary",
+		Long: `Show a summary of packages and configurations in a wandfile.
+
+If no path is specified, shows './wandfile.yaml' in the current directory.
+
+Examples:
+  wand wandfile show
+  wand wandfile show my-system.yaml`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			ctx := &cobraCommandContext{cmd: cmd, args: args}
+			return c.wandfileShowHandler.Handle(ctx)
+		},
+	}
+
+	return cmd
+}
+
+// createWandfileUpdateCommand creates the wandfile update command
+func (c *CobraCLIAdapter) createWandfileUpdateCommand() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "update",
+		Short: "Update packages from wandfile",
+		Long: `Update all packages defined in wandfile to their specified versions.
+
+Examples:
+  wand wandfile update`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			ctx := &cobraCommandContext{cmd: cmd, args: args}
+			return c.wandfileUpdateHandler.Handle(ctx)
 		},
 	}
 

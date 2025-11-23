@@ -1077,3 +1077,148 @@ func (h *OutdatedCommandHandler) Handle(ctx interfaces.CommandContext) error {
 
 	return nil
 }
+
+// WandfileInitCommandHandler handles the wandfile init command
+type WandfileInitCommandHandler struct {
+	wandfileSvc *services.WandfileService
+}
+
+// NewWandfileInitCommandHandler creates a new wandfile init command handler
+func NewWandfileInitCommandHandler(wandfileSvc *services.WandfileService) *WandfileInitCommandHandler {
+	return &WandfileInitCommandHandler{
+		wandfileSvc: wandfileSvc,
+	}
+}
+
+// Handle executes the wandfile init command
+func (h *WandfileInitCommandHandler) Handle(ctx interfaces.CommandContext) error {
+	return h.wandfileSvc.Init(ctx)
+}
+
+// WandfileValidateCommandHandler handles the wandfile validate command
+type WandfileValidateCommandHandler struct {
+	wandfileSvc *services.WandfileService
+}
+
+// NewWandfileValidateCommandHandler creates a new wandfile validate command handler
+func NewWandfileValidateCommandHandler(wandfileSvc *services.WandfileService) *WandfileValidateCommandHandler {
+	return &WandfileValidateCommandHandler{
+		wandfileSvc: wandfileSvc,
+	}
+}
+
+// Handle executes the wandfile validate command
+func (h *WandfileValidateCommandHandler) Handle(ctx interfaces.CommandContext) error {
+	args := ctx.GetArgs()
+	path := "wandfile.yaml"
+	if len(args) > 0 {
+		path = args[0]
+	}
+
+	ctx.Printf("Validating %s...\n\n", path)
+
+	result, err := h.wandfileSvc.Validate(path)
+	if err != nil {
+		return fmt.Errorf("validation failed: %w", err)
+	}
+
+	if result.Valid {
+		ctx.Printf("✓ %s is valid\n\n", path)
+		ctx.Printf("Packages (%d):\n", len(result.Packages))
+		for _, pkg := range result.Packages {
+			ctx.Printf("  ✓ %s\n", pkg)
+		}
+
+		if result.HasDotfiles {
+			ctx.Printf("\nDotfiles:\n")
+			ctx.Printf("  ✓ Repository URL is accessible\n")
+			ctx.Printf("  ✓ Symlinks: %d configured\n", result.SymlinkCount)
+		}
+	} else {
+		ctx.Printf("✗ %s has errors:\n\n", path)
+		for _, errMsg := range result.Errors {
+			ctx.Printf("  %s\n", errMsg)
+		}
+		return fmt.Errorf("validation failed")
+	}
+
+	return nil
+}
+
+// WandfileShowCommandHandler handles the wandfile show command
+type WandfileShowCommandHandler struct {
+	wandfileSvc *services.WandfileService
+}
+
+// NewWandfileShowCommandHandler creates a new wandfile show command handler
+func NewWandfileShowCommandHandler(wandfileSvc *services.WandfileService) *WandfileShowCommandHandler {
+	return &WandfileShowCommandHandler{
+		wandfileSvc: wandfileSvc,
+	}
+}
+
+// Handle executes the wandfile show command
+func (h *WandfileShowCommandHandler) Handle(ctx interfaces.CommandContext) error {
+	args := ctx.GetArgs()
+	path := "wandfile.yaml"
+	if len(args) > 0 {
+		path = args[0]
+	}
+
+	summary, err := h.wandfileSvc.Show(path)
+	if err != nil {
+		return fmt.Errorf("failed to show wandfile: %w", err)
+	}
+
+	ctx.Printf("📄 %s\n\n", path)
+
+	if len(summary.CLIPackages) > 0 {
+		ctx.Printf("CLI Packages (%d):\n", len(summary.CLIPackages))
+		for _, pkg := range summary.CLIPackages {
+			ctx.Printf("  ├─ %s\n", pkg)
+		}
+		ctx.Printf("\n")
+	}
+
+	if len(summary.GUIApps) > 0 {
+		ctx.Printf("GUI Apps (%d):\n", len(summary.GUIApps))
+		for _, app := range summary.GUIApps {
+			ctx.Printf("  ├─ %s\n", app)
+		}
+		ctx.Printf("\n")
+	}
+
+	if summary.SymlinkCount > 0 {
+		ctx.Printf("Symlinks: %d configured\n\n", summary.SymlinkCount)
+	}
+
+	if summary.HasDotfiles {
+		ctx.Printf("Dotfiles:\n")
+		ctx.Printf("  Repository: %s\n", summary.DotfilesRepo)
+	}
+
+	return nil
+}
+
+// WandfileUpdateCommandHandler handles the wandfile update command
+type WandfileUpdateCommandHandler struct {
+	wandfileSvc *services.WandfileService
+}
+
+// NewWandfileUpdateCommandHandler creates a new wandfile update command handler
+func NewWandfileUpdateCommandHandler(wandfileSvc *services.WandfileService) *WandfileUpdateCommandHandler {
+	return &WandfileUpdateCommandHandler{
+		wandfileSvc: wandfileSvc,
+	}
+}
+
+// Handle executes the wandfile update command
+func (h *WandfileUpdateCommandHandler) Handle(ctx interfaces.CommandContext) error {
+	ctx.Printf("Checking for updates...\n\n")
+
+	if err := h.wandfileSvc.Update(); err != nil {
+		return fmt.Errorf("failed to update: %w", err)
+	}
+
+	return nil
+}
