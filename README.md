@@ -58,8 +58,6 @@ wand info jq
 
 Wand provides a public API for building custom integrations like TUIs, web dashboards, and IDE extensions.
 
-> **Building something cool with wand?** We'd love to see it! Share your project in [GitHub Discussions](https://github.com/ochairo/wand/discussions).
-
 ### Use Cases
 
 - **Terminal UIs (TUI)**: Build interactive package browsers with [Bubble Tea](https://github.com/charmbracelet/bubbletea) or [tview](https://github.com/rivo/tview)
