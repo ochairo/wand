@@ -1,0 +1,477 @@
+# Wand - AI Assistant Rules
+
+You are an AI assistant helping to develop Wand, a lightweight cross-platform package manager and shell plugin system written in Go. Wand enables reproducible environment setup with formula-based package installation, shell plugin auto-configuration, and dotfile management.
+
+## Cardinal Rules
+
+**CRITICAL: All code must be production-ready. No placeholders, no TODOs, no incomplete implementations. Every piece of code should be fully functional, tested, and documented.**
+
+**NEVER USE WORKAROUNDS:** Always fix the root cause of problems. Never hide issues with:
+
+- `// nolint` comments without justification (fix the actual issue)
+- Empty error handlers (log or return errors properly)
+- `_` assignments to ignore errors (handle them meaningfully)
+- Configuration changes that hide problems (fix the underlying issue)
+- Try-catch equivalents that swallow errors (handle errors with context)
+- Any other "band-aid" solutions
+
+**IF YOU WRITE ERROR IGNORE PATTERNS, YOU FAILED. PERIOD.**
+**IF YOU WRITE EMPTY ERROR HANDLERS, YOU FAILED. PERIOD.**
+
+These are NOT debugging tools. These are signs of bad code.
+If Go's type system or linter complains, it's right and YOUR CODE is wrong.
+Fix your code, not the compiler.
+
+**FIX THE ROOT, NOT THE SYMPTOMS:**
+
+- If version extraction fails, investigate WHY (regex, timeout, network, HTML parsing)
+- If packages don't build, understand the actual issue, don't just retry forever
+- If tests fail, fix the actual bug, not the test
+- If workflows fail, investigate the underlying cause (not just "add retry logic")
+- Always address the underlying architectural problem
+
+**PRODUCTION QUALITY MEANS:**
+
+- Proper error handling with helpful, actionable messages
+- Robust retry logic with exponential backoff (strategic, not blind)
+- Clean code that passes all quality checks WITHOUT workarounds
+- Well-architected solutions that scale to 300+ packages
+- Zero tolerance for silent failures - log errors, don't hide them
+- System resilience: continues when individual packages fail (fail-safe)
+- Zero technical debt, zero shortcuts, zero excuses
+
+## Core Principles
+
+### SOLID Principles (Go Adaptation)
+
+1. **Single Responsibility Principle (SRP)**
+   - Each package/struct has one reason to change
+   - `gateways/` contains external integrations (downloaders, security scanners)
+   - `domain/` contains business logic (entities, use cases)
+   - `orchestrators/` coordinates complex workflows
+   - Each command in `cmd/` handles one primary action
+
+2. **Open/Closed Principle (OCP)**
+   - Use interfaces for extensibility (VersionFetcher, Downloader, etc.)
+   - New recipe types should not require code changes
+   - Plugin-style architecture for security scanners and version sources
+
+3. **Liskov Substitution Principle (LSP)**
+   - All implementations of an interface must be interchangeable
+   - All recipe types follow same download/build/package workflow
+   - All platforms (darwin-x86_64, linux-amd64, etc.) handled uniformly
+
+4. **Interface Segregation Principle (ISP)**
+   - Interfaces are small and focused (e.g., `io.Reader`, not "everything a file needs")
+   - Recipes specify only the fields they need
+   - SecurityGateway interface is minimal and focused
+
+5. **Dependency Inversion Principle (DIP)**
+   - Depend on interfaces (`VersionFetcher`), not concrete types
+   - Use dependency injection in orchestrators
+   - No global state - pass dependencies through constructors
+
+### DRY (Don't Repeat Yourself)
+
+- Extract common version fetching logic to VersionFetcher
+- Shared recipe parsing in yaml package
+- Reusable script execution in ScriptExecutor
+- Single source of truth for platform configurations
+- Common error types and messages
+
+### KISS (Keep It Simple, Stupid)
+
+- Simple Go for loops over complex iterators
+- Direct HTTP calls over complex client libraries
+- YAML recipes over JSON or protobuf (human readable)
+- Straightforward shell scripts over Go wrappers where appropriate
+- Sensible defaults, minimal configuration
+
+## Project Structure
+
+```
+wand/
+├── cmd/wand/                # CLI commands (install, update, search, etc.)
+│   └── main.go              # Command dispatcher with Cobra
+├── internal/
+│   ├── domain/              # Business logic (ZERO external dependencies)
+│   │   ├── entities/        # Formula, Package, Platform, Wandfile, WandRC, etc.
+│   │   ├── interfaces/      # Contracts (repositories, external services)
+│   │   ├── services/        # Business rules (InstallerService, ShimService, VersionService)
+│   │   ├── validation/      # Validators (FormulaValidator, VersionValidator, etc.)
+│   │   ├── resilience/      # Retry logic, error handling
+│   │   └── logging/         # Logger interface and implementation
+│   ├── domain-adapters/     # Repository implementations & external integrations
+│   │   ├── *_repository.go  # FormulaRepository, RegistryRepository, etc.
+│   │   ├── *_adapter.go     # GitHub, filesystem, shell executors
+│   │   └── downloader_adapter.go, extractor_adapter.go, etc.
+│   ├── domain-orchestrators/# High-level workflows
+│   │   ├── command_handlers.go      # CLI command processing
+│   │   └── install_orchestrator.go  # Installation workflow coordination
+│   ├── external-adapters/   # CLI framework & format parsers
+│   │   ├── cli/cobra_adapter.go     # Cobra command integration
+│   │   └── github_adapter.go        # GitHub API client
+│   └── util/                # Utility functions (non-domain)
+├── formulas/                # Formula definitions (*.yaml) - package specs
+├── scripts/                 # Installation & setup scripts (install.sh, completion scripts)
+├── test/                    # Integration tests (*_integration_test.go)
+├── docs/                    # Documentation & command reference
+├── examples/                # Example files (api-usage, wandfile)
+├── go.mod                   # Go module definition
+└── go.sum                   # Dependency checksums
+```
+
+**Key Rules:**
+
+- All production code in `internal/` (not importable from outside)
+- Commands in `cmd/wand/` are thin wrappers around orchestrators
+- Business logic is in `domain/` with ZERO external dependencies
+- Adapters in `domain-adapters/` handle repositories and external interactions (GitHub, filesystem, shell)
+- Tests live alongside code with `*_test.go` suffix or in `test/` directory for integration tests
+- Formulas are YAML files in `formulas/` directory (one per package/tool)
+- Shell plugins auto-configure in `~/.wand/plugins/` with `.zshrc`/`.bashrc` sourcing
+- Installation isolated to `~/.wand/` and `~/.dotfiles/` directories - never touches Homebrew
+
+## Go Requirements
+
+- **Go 1.24+** (latest stable)
+- **Strict error handling:** Every error return checked or explicitly ignored with comment
+- **Context usage:** Not heavily used (quick operations), but present in key I/O functions
+- **Interface-based design:** Depend on interfaces (VersionFetcher, Downloader, etc.), not concrete types
+- **Meaningful variable names:** No single letters except loop counters and standard exceptions (`i`, `err`, etc.)
+- **Proper logging:** Use domain/logging.Logger for all diagnostics
+- **Zero global state:** All state passed through function parameters or structs
+- **Shell safety:** Command execution validated and isolated, never uses user input in shell commands directly
+
+## Code Patterns to Follow
+
+### Error Handling (Go Style)
+
+```go
+// ✅ Good: Contextual error handling
+if err != nil {
+    return fmt.Errorf("failed to fetch version for %s: %w", pkgName, err)
+}
+
+// ✅ Good: Explicit ignore with comment
+_ = file.Close() // Best effort close, already handling write error above
+
+// ❌ Bad: Silent errors
+err = someOperation() // WRONG - error ignored
+
+// ❌ Bad: Generic errors
+return errors.New("failed")
+
+// ❌ Bad: Empty error handlers
+if err != nil {
+    // nolint: errcheck
+}
+```
+
+### Interfaces for Extensibility (OCP)
+
+```go
+// ✅ Good: Extensible via interfaces
+type VersionFetcher interface {
+    FetchLatestVersion(def *entities.Recipe) (string, error)
+}
+
+type BuildOrchestrator struct {
+    versionFetcher VersionFetcher
+}
+
+// Later: can swap implementations without changing BuildOrchestrator
+
+// ❌ Bad: Concrete dependency
+type BuildOrchestrator struct {
+    gitHubAPI *GitHubClient
+}
+```
+
+### Retry Logic (Don't Hide Failures)
+
+```go
+// ✅ Good: Documented retry with backoff
+func (d *Downloader) doWithRetry(req *http.Request) (*http.Response, error) {
+    var resp *http.Response
+    var err error
+
+    for attempt := 0; attempt <= maxRetries; attempt++ {
+        if attempt > 0 {
+            backoff := calculateBackoff(attempt - 1)
+            time.Sleep(backoff)
+        }
+
+        resp, err = d.httpClient.Do(req)
+        if err == nil && resp.StatusCode == http.StatusOK {
+            return resp, nil
+        }
+        // Continue retrying on network errors or specific status codes
+    }
+
+    return nil, fmt.Errorf("failed after %d attempts: %w", maxRetries+1, err)
+}
+
+// ❌ Bad: Infinite retries or giving up silently
+func download(url string) ([]byte, error) {
+    for {
+        resp, err := http.Get(url)
+        if err == nil {
+            return io.ReadAll(resp.Body)
+        }
+        // No timeout, no logging - will hang or fail silently
+    }
+}
+```
+
+### Platform Filtering (Smart, Not Brittle)
+
+```go
+// ✅ Good: Explicit platform support per package
+type Recipe struct {
+    Download RecipeDownload
+}
+
+type RecipeDownload struct {
+    Platforms map[string]PlatformConfig // darwin-x86_64, linux-amd64, etc.
+}
+
+// Filter at build time
+supportedPlatforms := recipe.Download.Platforms
+
+// ❌ Bad: Implicit assumptions
+type Recipe struct {
+    BuildOnAll bool // What does this mean? Which platforms?
+    SkipPlatforms string // "macos"? "darwin"? "mac"?
+}
+```
+
+## What to Avoid
+
+- **Global state:** No global variables for configuration or clients
+- **Silent failures:** Always log or return errors
+- **Infinite loops:** Always have exit conditions and timeouts
+- **Tight coupling:** Depend on interfaces, not concrete types
+- **Deep nesting:** Keep code flat (max 2-3 levels usually)
+- **Magic numbers:** Use named constants
+- **Unchecked errors:** Every error return must be handled
+- **Panics in libraries:** Return errors instead
+- **Side effects in init():** Initialization should be explicit
+- **Circular dependencies:** Use interfaces to break cycles
+- **Large functions:** Keep under 50 lines when possible
+- **Unvalidated user input:** Always validate and sanitize
+- **Direct file system modification:** Always validate paths prevent traversal attacks
+- **Shell command injection:** Never interpolate user input into shell commands
+- **Homebrew interference:** Never modify Homebrew directories or configuration
+
+## File Naming Conventions
+
+- `snake_case.go` for files
+- `PascalCase` for types/structs
+- `camelCase` for functions/variables
+- `SCREAMING_SNAKE_CASE` for constants
+- Prefix private/internal with lowercase letter
+- `*_test.go` for test files alongside production code
+
+## Testing Requirements
+
+- **Test behavior, not implementation:** Tests should survive refactoring
+- **Meaningful coverage:** Focus on critical paths, edge cases, error handling
+- **Test-Driven Development:** Write tests BEFORE implementation when possible
+- **Table-driven tests:** Use for multiple test cases
+- **No flaky tests:** Deterministic, no random timing
+- **Clear assertions:** One assertion per test when possible
+- **Helpful error messages:** Use `t.Errorf()` with context
+
+```go
+// ✅ Good: Table-driven, focused tests
+func TestVersionFetcher_ExtractVersion(t *testing.T) {
+    vf := NewVersionFetcher()
+
+    tests := []struct {
+        name    string
+        input   string
+        pattern string
+        want    string
+        wantErr bool
+    }{
+        {
+            name:    "extract semantic version",
+            input:   "Current version: 1.28.3",
+            pattern: `[0-9]+\.[0-9]+\.[0-9]+`,
+            want:    "1.28.3",
+            wantErr: false,
+        },
+        {
+            name:    "no match returns error",
+            input:   "Version unknown",
+            pattern: `[0-9]+\.[0-9]+\.[0-9]+`,
+            want:    "",
+            wantErr: true,
+        },
+    }
+
+    for _, tt := range tests {
+        t.Run(tt.name, func(t *testing.T) {
+            got, err := vf.extractVersion(tt.input, tt.pattern)
+            if (err != nil) != tt.wantErr {
+                t.Errorf("extractVersion() error = %v, wantErr %v", err, tt.wantErr)
+                return
+            }
+            if got != tt.want {
+                t.Errorf("extractVersion() = %v, want %v", got, tt.want)
+            }
+        })
+    }
+}
+
+// ❌ Bad: Unstructured, unclear
+func TestExtract(t *testing.T) {
+    v := NewVersionFetcher()
+    r, e := v.extractVersion("1.28.3", `\d+\.\d+\.\d+`)
+    if e != nil || r != "1.28.3" {
+        t.Fail()
+    }
+}
+```
+
+## Documentation Standards
+
+- **Comments for exported items:** Every exported type, function, constant
+- **Explain WHY, not WHAT:** Code shows WHAT, comments explain WHY
+- **Examples in comments:** Show common usage patterns
+- **Keep current:** Update comments when code changes
+
+```go
+// ✅ Good: Explains purpose and behavior
+// VersionFetcher handles fetching latest versions from various sources.
+// It supports GitHub releases, GitHub tags, plain URLs, and static versions.
+// All operations are retried with exponential backoff for reliability.
+type VersionFetcher struct {
+    httpClient *http.Client
+}
+
+// FetchLatestVersion fetches the latest version based on the version.source field.
+// It automatically filters pre-releases unless configured otherwise.
+//
+// Example:
+//   def := &Recipe{
+//       Version: VersionConfig{
+//           Source: "github-release:kubernetes/kubernetes",
+//           ExtractPattern: `v([0-9]+\.[0-9]+\.[0-9]+)`,
+//       },
+//   }
+//   version, err := vf.FetchLatestVersion(def)
+func (vf *VersionFetcher) FetchLatestVersion(def *entities.Recipe) (string, error) {
+    // ...
+}
+
+// ❌ Bad: Obvious from code
+// Gets the version
+func GetVersion() string {
+    return "1.0.0"
+}
+```
+
+## Performance Guidelines
+
+- **Timeout operations:** All HTTP requests, version fetches have timeouts
+- **Batch updates:** Collect multiple packages before batch operations
+- **Streaming where possible:** Don't load entire files into memory
+- **Resource cleanup:** Close files, connections explicitly
+- **Monitor resource usage:** Watch for memory leaks, goroutine leaks
+- **Lazy loading:** Don't fetch all formulas/packages upfront, cache results
+- **Shell plugin speed:** Keep plugin startup fast (< 100ms) with lazy initialization
+
+## Before Writing Code
+
+1. Read existing domain code to understand architecture
+2. Check if interfaces exist for what you need to implement (adapters/repositories)
+3. Ensure SOLID compliance (especially DIP - use interfaces like VersionFetcher, Downloader)
+4. Ask: "Can I use existing code?" (DRY)
+5. Ask: "Can I use an interface?" (OCP)
+6. Understand error cases before writing success path
+7. For file operations: always validate paths and check for traversal attacks
+8. For formulas: understand version parsing (name@version format) and platform support
+
+## While Writing Code
+
+**ERROR HANDLING FIRST:**
+
+1. What can go wrong? Network? Timeouts? Invalid input?
+2. How will I handle each error? Log it? Retry? Return it?
+3. What message will help the user understand what happened?
+4. **ONLY THEN** write the happy path
+
+**ALWAYS:**
+
+1. Handle every error return (no `_` assignments)
+2. Use interfaces, not concrete types
+3. Write tests as you write code (TDD)
+4. Keep functions small (< 50 lines)
+5. Use context for cancellation and timeouts
+6. Log important operations for debugging
+
+## After Writing Code
+
+1. Run all tests: `go test ./...` and integration tests with `GITHUB_TOKEN` env var
+2. Run linter: `golangci-lint run ./internal/...`
+3. Check for coverage gaps in error paths
+4. Review for SOLID compliance
+5. Verify error messages are helpful
+6. Check for resource leaks (goroutines, files, connections)
+7. Ensure timeouts on all I/O operations
+8. Test shell plugin installation and activation
+9. Verify no Homebrew directories touched
+10. Check path validation for security
+
+## Code Review Checklist
+
+**CRITICAL CHECKS (AUTO-FAIL IF ANY VIOLATED):**
+
+- [ ] **No unchecked error returns** - Every error from function call is handled
+- [ ] **No empty error handlers** - No `if err != nil { }` without at least logging
+- [ ] **No `_` error ignores** - Errors are explicitly handled or comments explain why
+- [ ] **No generic errors** - `fmt.Errorf()` wraps errors with context and uses `%w`
+- [ ] **No TODOs or placeholders** - Code is complete and ready for production
+- [ ] **No workarounds** - Every problem fixed at root cause
+- [ ] **No unsafe assumptions** - Platform support explicit, not implicit
+
+**QUALITY CHECKS:**
+
+- [ ] Follows SOLID principles
+- [ ] No code duplication (DRY) - Extract common patterns
+- [ ] Simple and clear (KISS) - No over-engineering
+- [ ] Proper error handling with helpful messages
+- [ ] Tests cover happy path, edge cases, and error cases
+- [ ] No resource leaks (goroutines, file descriptors, connections)
+- [ ] All I/O operations have timeouts
+- [ ] Comments explain WHY, not WHAT
+- [ ] Follows project structure (cmd, internal/domain, internal/domain-adapters)
+- [ ] Uses interfaces for extensibility
+- [ ] Dependency injection used, no global state
+- [ ] Retries are documented and finite
+- [ ] Platform handling is explicit and consistent
+
+**IF ANY CRITICAL CHECK FAILS: DELETE THE CODE AND START OVER**
+
+## Security Guidelines
+
+- **Never trust user input:** Validate and sanitize all input
+- **Path traversal prevention:** Use `path/filepath` and validate all paths stay within `~/.wand/` or `~/.dotfiles/`
+- **Command injection prevention:** Never shell-escape user input or interpolate into commands - use safe argument passing
+- **No hardcoded secrets:** Use environment variables or configuration
+- **GITHUB_TOKEN support:** Respect `GITHUB_TOKEN` environment variable for authenticated API requests (higher rate limits)
+- **Shell safety:** Plugin installation validates Git repositories before cloning
+- **Symlink safety:** Prevent symlink attacks and circular references in dotfile linking
+
+## When in Doubt
+
+1. Check existing code for similar patterns
+2. Review SOLID/DRY/KISS principles
+3. Choose the simpler solution
+4. Ask: "What could go wrong?" (Think about errors first)
+5. Write the test first
+6. Document your assumptions
+
+**Remember: When in doubt, choose simplicity and explicitness.**
