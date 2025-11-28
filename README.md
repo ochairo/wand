@@ -11,6 +11,12 @@ A package manager with shim-based version control for CLI tools, GUI apps, and d
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/ochairo/wand/badge)](https://scorecard.dev/viewer/?uri=github.com/ochairo/wand)
 [![License](https://img.shields.io/github/license/ochairo/wand)](https://github.com/ochairo/wand/blob/main/LICENSE)
 
+> [!WARNING]
+> **🚧 Early Development
+>
+> This project is in active development and should be considered **experimental**. Features may change, break, or be removed without notice.
+>
+
 [Features](#-features) • [Formulas](#-supported-formulas) • [Quick Start](#-quick-start) • [Third-Party Integration](#-third-party-integration) • [Documentation](#-documentation)
 
 </div>
