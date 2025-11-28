@@ -3,6 +3,7 @@ set -euo pipefail
 
 # Wand installer script
 # Usage: curl -sSL https://raw.githubusercontent.com/ochairo/wand/main/scripts/install.sh | bash
+# With wandfile: ... | bash -s -- --wandfile <url>
 
 # Colors
 RED='\033[0;31m'
@@ -14,6 +15,7 @@ NC='\033[0m' # No Color
 # Configuration
 REPO="ochairo/wand"
 INSTALL_DIR="${INSTALL_DIR:-/usr/local/bin}"
+WANDFILE_URL=""
 
 # Logging functions
 log_info() {
@@ -41,6 +43,13 @@ check_requirements() {
             missing+=("$cmd")
         fi
     done
+
+    # Git is required if installing from wandfile
+    if [ -n "$WANDFILE_URL" ]; then
+        if ! command -v git >/dev/null 2>&1; then
+            missing+=("git")
+        fi
+    fi
 
     if [ ${#missing[@]} -gt 0 ]; then
         log_error "Missing required commands: ${missing[*]}"
@@ -189,6 +198,49 @@ install_wand() {
     fi
 }
 
+# Install from wandfile
+install_from_wandfile() {
+    local wandfile_url="$1"
+    local tmp_wandfile
+
+    log_info "Installing from wandfile: ${wandfile_url}"
+
+    # Download wandfile
+    tmp_wandfile=$(mktemp)
+    trap 'rm -f "$tmp_wandfile"' EXIT
+
+    if ! curl -fsSL "$wandfile_url" -o "$tmp_wandfile"; then
+        log_error "Failed to download wandfile"
+        log_info "URL: ${wandfile_url}"
+        exit 1
+    fi
+
+    # Install packages
+    if ! wand wandfile install "$tmp_wandfile"; then
+        log_error "Failed to install from wandfile"
+        exit 1
+    fi
+
+    log_success "Successfully installed packages from wandfile"
+}
+
+# Parse arguments
+parse_args() {
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --wandfile)
+                WANDFILE_URL="$2"
+                shift 2
+                ;;
+            *)
+                log_error "Unknown argument: $1"
+                log_info "Usage: ... | bash -s -- [--wandfile <url>]"
+                exit 1
+                ;;
+        esac
+    done
+}
+
 # Main
 main() {
     echo -e "${GREEN}"
@@ -199,8 +251,15 @@ main() {
 EOF
     echo -e "${NC}"
 
-    check_requirements
+    parse_args "$@"
+    check_requirements  # Checks git if --wandfile is provided
     install_wand
+
+    # Install from wandfile if provided
+    if [ -n "$WANDFILE_URL" ]; then
+        echo ""
+        install_from_wandfile "$WANDFILE_URL"
+    fi
 
     echo ""
     log_info "Get started with:"

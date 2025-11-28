@@ -65,7 +65,9 @@ func TestWandfileWorkflow(t *testing.T) {
 	dotfileRepo := domain_adapters.NewDotfileRepository(fs, wandDir)
 
 	// Initialize external adapters
-	githubClient := external_adapters.NewGitHubAdapter("")
+	// Use GITHUB_TOKEN env var if available (for CI/CD rate limit increases)
+	githubToken := os.Getenv("GITHUB_TOKEN")
+	githubClient := external_adapters.NewGitHubAdapter(githubToken)
 
 	// Initialize domain services
 	versionService := services.NewVersionService(githubClient, formulaRepo)

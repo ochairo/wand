@@ -64,7 +64,9 @@ func TestWandRCWorkflow(t *testing.T) {
 	wandrcRepo := domain_adapters.NewWandRCRepository(fs)
 
 	// Initialize external adapters
-	githubClient := external_adapters.NewGitHubAdapter("")
+	// Use GITHUB_TOKEN env var if available (for CI/CD rate limit increases)
+	githubToken := os.Getenv("GITHUB_TOKEN")
+	githubClient := external_adapters.NewGitHubAdapter(githubToken)
 
 	// Initialize domain services
 	versionService := services.NewVersionService(githubClient, formulaRepo)
@@ -138,8 +140,14 @@ func TestWandRCWorkflow(t *testing.T) {
 
 	t.Run("CheckGitHubAPI", func(t *testing.T) {
 		// Test GitHub API connectivity (without installing)
+		// This test is skipped if rate limited, which is expected in CI without token
 		releases, err := githubClient.ListReleases("ochairo", "potions")
 		if err != nil {
+			if strings.Contains(err.Error(), "rate limit") {
+				t.Logf("GitHub API rate limited - this is expected without GITHUB_TOKEN")
+				t.Logf("To fix in CI: Set GITHUB_TOKEN environment variable")
+				t.Skip("GitHub rate limit exceeded")
+			}
 			t.Logf("Warning: GitHub API not accessible: %v", err)
 			t.Skip("Skipping GitHub API test")
 		}
