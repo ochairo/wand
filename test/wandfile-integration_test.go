@@ -177,8 +177,8 @@ func TestWandfileWorkflow(t *testing.T) {
 			t.Fatalf("Failed to dump wandfile: %v", err)
 		}
 
-		if len(wandfile.CLI) != 2 {
-			t.Errorf("Expected 2 CLI packages in dump, got %d", len(wandfile.CLI))
+		if len(wandfile.Formulas) != 2 {
+			t.Errorf("Expected 2 packages in dump, got %d", len(wandfile.Formulas))
 		}
 
 		// Save dumped wandfile
@@ -187,6 +187,6 @@ func TestWandfileWorkflow(t *testing.T) {
 			t.Fatalf("Failed to save dumped wandfile: %v", err)
 		}
 
-		t.Logf("✓ Dumped wandfile with %d packages", len(wandfile.CLI))
+		t.Logf("✓ Dumped wandfile with %d packages", len(wandfile.Formulas))
 	})
 }
