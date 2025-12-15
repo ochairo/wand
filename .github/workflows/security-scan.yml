@@ -126,7 +126,7 @@ jobs:
         continue-on-error: true
 
       - name: Upload gosec Report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: always()
         with:
           name: gosec-security-report
@@ -171,7 +171,7 @@ jobs:
           go list -json -m all > go-dependencies.json
 
       - name: Upload Vulnerability Reports
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: always()
         with:
           name: go-vulnerability-reports
@@ -227,7 +227,7 @@ jobs:
           cat licenses-report.txt
 
       - name: Upload License Report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: always()
         with:
           name: go-license-report
